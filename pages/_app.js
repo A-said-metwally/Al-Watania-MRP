@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   
   return (
       <div className=' relative overflow-auto scroll-smooth'>
-        <Head title="Al Watania KPIs"/>
+        <Head title="Al Watania MRP"/>
         <Header/>
         <Component {...pageProps}   />    
       </div>

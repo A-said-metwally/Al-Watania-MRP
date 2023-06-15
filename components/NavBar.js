@@ -1,6 +1,5 @@
 import React from 'react'
 import NavItems from './NavItems'
-import { dept } from '../utils/data/departements'
 
 function NavBar() {
   return (
@@ -10,13 +9,6 @@ function NavBar() {
                 <button className ="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse " id="navbarNavDropdown">
-                    <ul className=" navbar-nav space-x-6 font-bold  ">
-                        {dept.map((d)=>(
-                            <NavItems dep={d.depName} sections = {d.sections} key={d.depName}/>
-                        ))}
-                    </ul>
-                </div>
             </div>
         </nav>
     </div>

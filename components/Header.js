@@ -37,7 +37,7 @@ function Header() {
                 <li className="nav-item">
                   <HeaderItem title = 'HOME' Icon = {HomeIcon} path='/' />
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <HeaderItem title = 'Inputs' Icon = {LightningBoltIcon} path='/kpi_inputs'/>
                 </li>
                 <li className="nav-item">
@@ -71,7 +71,7 @@ function Header() {
                 </li>
                 <li className="nav-item" onClick={()=>setLang(!Lang)}>
                   <HeaderItem title = {Lang ? 'Eng' : 'عربى'} Icon = {PencilIcon} path='#'/>
-                </li>
+                </li> */}
 
               </ul>
             </div>

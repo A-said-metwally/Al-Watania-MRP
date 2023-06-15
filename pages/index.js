@@ -1,115 +1,199 @@
 import React, {useEffect, useState} from 'react'
-import Slider from '../components/Slider'
-import {ShoppingBagIcon, ClipboardListIcon, QuestionMarkCircleIcon} from '@heroicons/react/outline'
-import CiTeam from '../components/CiTeam'
-import Title from '../components/Title'
-import Spiner from '../components/Spiner'
-import Image from 'next/image'
-import KpisAspects from '../components/KpisAspects'
+import {InformationCircleIcon} from '@heroicons/react/outline'
 import Up from '../components/Up'
+import ItemesSelections from '../components/ItemesSelections'
+import ItemsDetails from '../components/ItemsDetails'
+import Controls from '../components/Controls'
+import Output from '../components/Output'
+import WholeSection from '../components/WholeSection'
+import CalculationSteps from '../components/CalculationSteps'
+import PortionSection from '../components/PortionSection'
+
+import broiler from '../broiler.json'
+import items from '../items.json'
+import { broilerFilter, portionOrdersGrouping, wholeOrdersGrouping } from '../utils/fn'
+import Evaluation from '../components/Evaluation'
+
 
 
 export default function Main() {   
 
   const [Scrlheight, setScrlheight] = useState(0)
+  const [Items, setItems] = useState([]) // first step selected items
+  const [Alw, setAlw ] = useState()
+  const [PlanInputs, setPlanInputs] = useState([]) // save plan inputs qty
+
+
+  const getAlw = (e)=>{
+    setAlw(e)
+  }
+
+  const selectItems = (e)=>{
+    setItems([...Items, ...e])
+  }
+
+  const addData = (e) =>{ 
+    // check if data already exist or not
+    let chk = PlanInputs.filter((i)=>{ return i.material === e.material})
+    if(chk.length > 0){
+        let newArr = PlanInputs.filter((d)=>{ return d.material !==  chk[0].material})
+        newArr.push(e)
+        setPlanInputs(newArr)
+    }else{
+        setPlanInputs([...PlanInputs, e])
+    }
+}
+
+// grouping whole chicken orders and portion orders
+const wholeOrders = wholeOrdersGrouping(PlanInputs)
+const portionOrders = portionOrdersGrouping(PlanInputs)
+
+// filter broiler data with in range according live weight
+const [Distribution, setDistribution ] = useState([])
+
+// calculate distribution 
+let dist = []
+let weights = ['500', '600', '700', '800', '900', '1000', '1100', '1200', '1300', '1400', '1500', '1600', '1700']
+
+function getDistribution(){
+  if(Alw > 0 ){
+    const broilerDt = broilerFilter(Alw, broiler)
+    let wt = []
+    let sum = 0
+    weights.forEach((w)=>{
+      broilerDt.forEach((e)=>{ wt.push(e[w]) }) // change
+      wt.forEach((n)=>{ sum += n })
+      let avg = sum / wt.length
+      dist.push({group:[w][0],percent:avg})
+    })
+  }
+  setDistribution(dist)
+}
+
+
+// calculate losses %
+const [Losses, setLosses] = useState(0)
+
+function getLosses(){
+  const broilerDt = broilerFilter(Alw, broiler)
+  let values = []
+  let sum = 0
+  broilerDt.map((b)=>{
+    values.push(+b.Losses)
+    sum += +b.Losses
+  })
+  setLosses(sum / values.length)
+}
+
+// create whole table data
+const [WholeObj, setWholeObj] = useState([])
+
+let wObj = []
+const createWholeChknObj = ()=>{
+    wholeOrders.forEach((e)=>{
+      let d = Distribution.filter((d)=>{return d.group === e.group})[0].percent
+  
+      wObj.push({
+        group:e.group,
+        order:e.order,
+        distribution:d.toFixed(1),
+        toAchieved:Math.ceil(e.order / (d / 100)) 
+      })
+    })
+    setWholeObj(wObj)
+}
+
+// second potion calculation
+
+// first get yield matrix
+let yieldArr = [];
+let yieldMatrix = [];
+
+const getYield = ()=>{
+  let parts = items.filter((e)=>{return e.classification === 'Parts'}) // filter on parts items
+  parts.map((e)=>{
+   yieldArr.push(
+        {
+          family: e.family,
+          class: e.class,
+          yieldFromChkn: e.yieldFromChkn,
+          yieldAfterEvas: e.yieldAfterEvas,
+          yieldFromFamily: e.yieldFromFamily,
+        })      
+  })
+  const uniqueObj = Array.from(new Set(yieldArr.map(obj => JSON.stringify(obj))))
+  yieldMatrix = uniqueObj.map(str => JSON.parse(str)).filter((e)=>{return e.yieldFromChkn !== ''})
+}
+
+getYield()
+
+const [PortionObj, setPortionObj] = useState([])
+let portionObj = []
+
+const createPortionObj = ()=>{
+  portionOrders.map((obj)=>{
+    let filteredObj = yieldMatrix.filter((e)=>{return e.family === obj.family })[0]
+    console.log(portionOrders)
+    console.log(yieldMatrix)
+    portionObj.push({
+      family:filteredObj.family,
+      class:obj.class,
+      order:obj.order,
+      yieldFromChkn: +filteredObj.yieldFromChkn,
+      yieldAfterEvas: +filteredObj.yieldAfterEvas,
+      yieldFromFamily: +filteredObj.yieldFromFamily,
+      requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)),
+      requiredFromFamilyKg: Math.ceil(obj.order / (+filteredObj.yieldFromFamily/100))
+    })
+  })
+  setPortionObj(portionObj)
+}
+
+
+// calculation function
+const calc = ()=>{
+  if(Alw !== undefined){
+    createWholeChknObj()
+    createPortionObj()
+  }else{
+    alert('Pls Inter Expected Avg Live Weight')
+  }
+}
 
   useEffect(()=>{
-    window.onscroll = ()=>{setScrlheight(window.pageYOffset)}
-  })
+    getDistribution()
+    getLosses()
+  }, [Alw])
 
   return (
-  <div className='relative '>
-      <Up/>
-      <div className='container text-center'>
-        <h1 className=' text-purple-600 text-2xl font-sans leading-3 p-14 font-bold'>
-          مرحبًا بكم في موقع تسجيل و عرض بيانات مؤشرات آداء قطاع التصنيع بدواجن الوطنية  
-        </h1>
-      </div>
-      <div className = ' relative flex justify-end items-center shadow-md mt-10 bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-white '>
-        <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>لماذا نحتاج لمؤشرات الآداء ؟</p>
-        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
-          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
-        </div>
-      </div>
-      
-      <Spiner/>
+  <div className='relative h-[1050px] overflow-scroll scrollbar-hide'>
+      {/* <Up/> */}
+      <h1 className=' italic text-center text-purple-500 mb-5 font-serif font-bold'>Slaughtering MRP ...</h1>
+      <div className='flex justify-between h-full'>
 
-      <div className = 'container mt-[80px]  p-0'>
-        <div className="card mb-3 w-full bg-transparent border-none" style={{'border':'none !important'}}>
-          <div className="row g-0 relative overflow-hidden">
-            <div className={`col-md-4 absolute ${Scrlheight >= 380 ? 'left-0' : 'left-[-500px]'} transition-all duration-700 `}>
-              <Image height={400} width={300} src="/kpis.jpg" className="img-fluid rounded-start h-[300px] w-[300px] mix-blend-multiply" alt="kpi-img"/>
-            </div>
-            <div className="col-md-8">
-              <div className="card-body ">
-                <div className='text-right flex items-center space-x-3 justify-end mb-3'>
-                  <h5 className=" text-2xl text-gray-500 ">لماذا نحتاج لمؤشرات الآداء ؟</h5>
-                  <QuestionMarkCircleIcon className = 'h-10 w-10 text-sky-600 animate-bounce'/>
-                </div>
-                <p className="card-text text-lg font-semibold text-gray-500 text-right leading-8">
-                تخيل انك تقود سيارتك في الصباح متوجهًا من المنزل إلى العمل, و فوجئت انه لا يوجد امامك لوحات السرعة ولا مستوى الوقود ولا مستوى حرارة مياه تبريد المحرك ولا تستطيع ان تعلم معدل استهلاك وقود السيارة, تخيلت ؟, بضعة معلومات عدم توفرها قد يمنع تحركك بالسيارة على الرغم من انه لا يوجد ما يمنعك من قيادتها, إلا ان عدم متابعتك لمؤشرات السيارة لا يجعلك تستطيع قيادتها و التحرك بها, فما بالك بمصنع او مجموعة من المصانع تعمل منذ عشرات السنين ولا تستطيع متابعة مؤشرات المصانع الرئيسية, لا تستطيع ان تعرف معدلات السلامة ولا الجودة ولا يمكنك متابعة كفاءة خطوط الانتاج و لا تعلم معدلات استهلاك الخامات و ما هي اكبر الحيود الموجودة عندك, بدون كل ما سبق
-                 ستفقد مجرد فكرة التحسين, فكيف نستطيع تحسين ما لا نقيسه ولا نعرف في اي وضع وصل
-                  لذلك, بدأنا في قطاع المصانع في دواجن الوطنية, بوضع مباديء و اساسيات مؤشرات الاداء  الاساسية لقطاع المصانع,
-                  .و التي منها سنستطيع تحديد نقاط الضعف و الحيود و العمل عليها لتكون البداية في خطوات التحسين المستمر
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <Spiner/>
-
-        <div className="card mb-12 mt-[80px] w-full bg-transparent border-none" style={{'border':'none !important'}}>
-          <div className="row g-0 ">
-            <div className={`${Scrlheight >= 1100 ? 'opacity-1' : 'opacity-0'} col-md-12 h-full transition-all duration-1000 bg-[#91bd3f] text-white rounded-lg shadow-lg`}>
-              <div className="card-body text-right">
-                  <b className = 'text-xl text-right font-sans'>{`تنقسم مؤشرات الاداء داخل قطاع المصانع إلى ثلاث أقسام رئيسية و هي المؤشرات الفردية '–' مؤشرات الانتاجية '–' المؤشرات العامة`}</b>
-                <ul className=' text-right list-disc mt-5 main-page-ul mr-5' >
-                  <li className = 'list-disc text-xl leading-7 pb-5 text-right'>
-                    <span className=' font-semibold text-gray-600'> المؤشرات الفردية</span>, هي المؤشرات الخاصة بكل فرد على حدى و هي تتحدد غالبًا بسلوك الفرد و انتظامه داخل العمل و هنا اخترنا مؤشرين, الاول هو الغياب بدون إذن و الثاني هو مخالفات تعليمات السلامة 
-                  </li>
-                  <li className = 'list-disc text-xl leading-7 pb-5'>
-                    <span className=' font-semibold text-gray-600'>مؤشرات الانتاجية</span>, هي المؤشرات الخاصة بكل قسم و فيها يتم قياس آداء القسم من خلال مؤشر واحد يميز اداء القسم خلال فترة القياس و يتم من خلاله معرفة انتاجية العاملين بهذا القسم
-                  </li>
-                  <li className = 'list-disc text-xl leading-7 pb-5'>
-                    <span className=' font-semibold text-gray-600'>المؤشرات العامة</span>, هي المؤشرات التي تقيس آداء القطاع كفريق عمل واحد له اهداف محددة يتكاتف الجميع لتحقيقها, و تشمل المؤشرات العامة عدة محاور رئيسية كالجودة و الانتاج و التكلفة و الخطة
-                  </li>
-                </ul>  
-                <h4 className='mt-3 text-white text-xl font-sans'>لتفاصيل أكثر, برجاء الاطلاع على العرض التقديمي بالاسفل</h4>             
-              </div>
-            </div>
+        {/* left side */}
+        <div className='w-1/2 p-2 h-full'>
+          <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full overflow-scroll scrollbar-hide'>
+            <ItemesSelections selectItems = {selectItems} />
+            <ItemsDetails Items = {Items} addData = {addData}/>
           </div>
         </div>
 
-      </div>
-      <Spiner/>
 
-      <div className = ' relative flex justify-end shadow-md items-center  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-white '>
-        <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>محاور مؤشرات قياس الاداء</p>
-        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
-          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
+        {/* right side */}
+        <div className=' relative w-1/2 p-2 h-full '>
+            <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full overflow-scroll scrollbar-hide'>
+              <Controls getAlw = {getAlw} calc = {calc}/>
+              <hr className='w-[90%] relative top-[20px] left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
+              <Output/>
+              {PortionObj.length >0 && <Evaluation matrix = {yieldMatrix} portionObj = {PortionObj}/>}
+              <CalculationSteps losses = {Losses} />
+              { WholeObj.length >0 && <WholeSection wholeObj = {WholeObj}/>}
+              { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj}/>}
+            </div>
         </div>
       </div>
-      
-      <KpisAspects height = {Scrlheight}/>
-
-      <Spiner/>
-
-      <div className = ' relative flex justify-end shadow-md items-center  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-white '>
-        <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>Al Watania KPIs 2023</p>
-        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
-          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full ' />
-        </div>
-      </div>
-
-      <Slider/>
-
-      <Spiner/>
-
-      <Title title={"فريق التحسين المستمر"} Icon={ClipboardListIcon}/>
-      <CiTeam/>
-
-    </div>
+  </div>
   )
 }
 
