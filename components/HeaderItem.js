@@ -6,7 +6,7 @@ function HeaderItem({title, Icon, path, subNav}) {
   return (
     <Link href={path}  >
       <div className=' relative flex flex-col items-center cursor-pointer group
-          w-12 sm:w-20 hover:text-sky-500'>
+           hover:text-sky-500'>
                 <Icon className='h-8 mb-1 group-hover:animate-bounce'/>
                 <p className=' group-hover:text-sky-500 group-hover:font-semibold tracking-widest'>
                     {title}

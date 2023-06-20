@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 
-function WholeSection({wholeObj}) {
-    const values = wholeObj.map((v)=>{return +v.toAchieved})
-    const highestQty = Math.max(...values)
+function WholeSection({wholeObj, neededCount}) {
 
     
     return (
@@ -13,7 +11,6 @@ function WholeSection({wholeObj}) {
         <div className='flex items-center space-x-2 mt-[25px] cursor-pointer group'>
             <InformationCircleIcon className='h-8 w-8 text-sky-500'/>
             <p className='text-sky-700 text-xl font-semibold'>Whole Chicken Calculation</p>
-            {/* <ChevronDoubleDownIcon className='h-6 w-6  text-orange-500 group-hover:animate-bounce'/> */}
         </div>
 
         <table className="table mt-3 ">
@@ -43,16 +40,17 @@ function WholeSection({wholeObj}) {
             </thead>
             <tbody className='text-gray-600'>
                 {wholeObj.map((d)=>(
-                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
+                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                         <th scope="row" className=' pt-3 pb-3 text-center'>{d.group}</th>
                         <td className=' pt-3 pb-3 text-center'>{d.order}</td>
                         <td className=' pt-3 pb-3 text-center'>{d.distribution}<span className='text-blue-600'>%</span></td>
-                        <td className=' pt-3 pb-3 text-center'>{d.toAchieved}</td>
+                        <td className=' pt-3 pb-3 text-center'>{(d.toAchieved).toLocaleString()}</td>
                     </tr>
                 ))}
             </tbody>
         </table>   
-        <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3'>Needed Count to Cover Whole Orders :-  {highestQty}</p> 
+        <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 
+            shadow-md mt-3 hover:scale-105 cursor-pointer'>Needed Count to Cover Whole Orders :-  {Math.round(neededCount, 0).toLocaleString()} #</p> 
     </div>
   )
 }

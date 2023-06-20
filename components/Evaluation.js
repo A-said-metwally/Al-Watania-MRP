@@ -1,28 +1,75 @@
 import React from 'react'
 import FamilyEval from './FamilyEval'
 import yieldMatrix from '../yield.json'
+import {CalculatorIcon} from '@heroicons/react/outline'
 
-function Evaluation({portionObj}) {
+function Evaluation({wholeTot, remainedFromWholeDist, portionObj, largestToAchieveWhole, largestToAchievePortion}) {
 
   return (
-    <div className=' flex flex-col items-center mt-8'>
-        <div className='flex items-center space-x-2 mt-[25px] cursor-pointer group'>
-            <i className='fa-solid fa-gauge-high text-2xl'></i>
-            <p className='text-sky-700 text-xl font-semibold'>Evaluation</p>
+    <div className='  relative flex flex-col  mt-8'>
+        <hr className='w-[90%] relative top-0 left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
+
+        <div className='flex justify-center items-center space-x-2 mt-[25px] mb-3 cursor-pointer group'>
+            <CalculatorIcon className=' h-8 w-8 text-sky-400'/>
+            <p className='text-sky-700 text-xl font-semibold'>Portion Evaluation</p>
         </div>
-        <div className='flex flex-wrap justify-between w-full'>
+        {/* portion Evaluation */}
+        <div className='flex flex-wrap justify-between w-full mb-4'>
           {yieldMatrix.map((y, index)=>{
             return (
               <FamilyEval 
                 key = {index}
                 family = {y.family} 
-                qty = {portionObj.filter((e)=>{ return e.family === y.family})[0]?.order}
+                order = {portionObj.filter((e)=>{ return e.family === y.family})[0]?.order}
+                outPut = {largestToAchievePortion * (y.st /100)}
                 st = {y.st} 
                 act = {25.6} 
               />
             )
           })}
         </div>
+
+      {/* whole Evaluation */}
+      <hr className='w-[90%] relative top-0 left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
+      <div className='flex justify-center items-center space-x-2 mt-[25px] mb-3 cursor-pointer group'>
+          <CalculatorIcon className=' h-8 w-8 text-sky-400'/>
+          <p className='text-sky-700 text-xl font-semibold'>Whole Evaluation (Over Stock)</p>
+      </div>
+
+      <table className="table mt-3 ">
+            <thead className='text-gray-500'>
+                <tr>
+                    <th scope="col">
+                        <div className='flex justify-center items-center space-x-3'>
+                           <span>Weight Group</span>
+                        </div> 
+                    </th>
+                    <th scope="col">
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span>Distribution</span>
+                        </div> 
+                    </th>
+                    <th scope="col">
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span>Over Stock</span>
+                        </div> 
+                    </th>
+                </tr>
+            </thead>
+            <tbody className='text-gray-600'>
+                {remainedFromWholeDist.map((d, index)=>(
+                    <tr key = {index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
+                        <th scope="row" className=' pt-3 pb-3 text-center'>{d.group}</th>
+                        <td className=' pt-3 pb-3 text-center'>{(d.percent).toFixed(1)}<span className='text-blue-600'>%</span></td>
+                        <td className=' pt-3 pb-3 text-center'>
+                          {Math.round((d.percent / 100 * (largestToAchieveWhole - wholeTot )),0).toLocaleString()}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>   
+
+
     </div>
   )
 }

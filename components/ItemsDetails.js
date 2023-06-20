@@ -1,11 +1,9 @@
 import React from 'react'
 import {TrashIcon} from '@heroicons/react/outline'
 
-function ItemsDetails({Items, addData}) {
+function ItemsDetails({Items, addData, removeItem}) {
 
-    const getData = (e)=>{
-        addData(e)
-    }
+    const getData = (e)=>{addData(e)}
 
   return (
     <div>
@@ -44,7 +42,10 @@ function ItemsDetails({Items, addData}) {
                             />
                         </td>
                         <td className=' pt-3 pb-3 align-middle'>
-                            <TrashIcon className='h-7 w-7 text-red-500 hover:text-black hover:scale-105'/>
+                            <TrashIcon 
+                                className='h-7 w-7 text-red-500 hover:text-black hover:scale-105'
+                                onClick={()=>removeItem(d.material)}
+                                />
                         </td>
                     </tr>
                 ))}

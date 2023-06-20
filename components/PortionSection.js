@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-function PortionSection({Alw, portionObj}) {
+function PortionSection({Alw, portionObj, neededCount}) {
 
   return (
     <div className='relative mt-16 mb-5'>
@@ -44,19 +44,19 @@ function PortionSection({Alw, portionObj}) {
             </thead>
             <tbody className='text-gray-600'>
                 {portionObj.map((d)=>(
-                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
+                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                         <th scope="row" className=' pt-3 pb-3 text-center'>{d.family}</th>
                         <td className=' pt-3 pb-3 text-center'>{d.order}</td>
                         <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
                         <td className=' pt-3 pb-3 text-center'>{d.requiredChknKg}</td>
-                        <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / (Alw / 1000)))).toLocaleString()}</td>
+                        <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / (Alw)),0)).toLocaleString()}</td>
                     </tr>
                 ))}
             </tbody>
         </table>   
-        <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3'>Needed Count to Cover Portion Orders :- </p> 
-        {/* <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3'>Needed Count to Cover Portion Orders :-  {highestQty}</p>  */}
-
+        <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3 hover:scale-105 cursor-pointer'>
+            Needed Qty to Cover Portion Orders : {Math.round(neededCount, 0).toLocaleString()} Kg , {Math.round(neededCount / Alw, 0).toLocaleString()} #
+        </p> 
 
     </div>
   )

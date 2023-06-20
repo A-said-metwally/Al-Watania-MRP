@@ -33,17 +33,17 @@ function Header() {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav flex flex-grow justify-between space-x-4 max-w-3xl">
+              <ul className="navbar-nav flex flex-grow justify-between space-x-4 max-w-[180px]">
                 <li className="nav-item">
                   <HeaderItem title = 'HOME' Icon = {HomeIcon} path='/' />
                 </li>
+                 <li className="nav-item">
+                  <HeaderItem title = 'Yield Data' Icon = {LightningBoltIcon} path='/yield'/>
+                </li>
                 {/* <li className="nav-item">
-                  <HeaderItem title = 'Inputs' Icon = {LightningBoltIcon} path='/kpi_inputs'/>
-                </li>
-                <li className="nav-item">
-                  <HeaderItem title = 'Results' Icon = {BadgeCheckIcon } path='/results'/>
-                </li>
-                <li className="nav-item group">
+                  <HeaderItem title = 'Results' Icon = {BadgeCheckIcon } path='/'/>
+                </li> */}
+                {/*<li className="nav-item group">
                     <HeaderItem title = 'Evaluation' Icon = {ChartBarIcon} path='#' subNav={true}/>
                 </li>
                 <li className="nav-item">

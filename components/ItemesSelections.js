@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import items from '../items.json'
 
 
-function ItemesSelections({selectItems}) {
+function ItemesSelections({selectItems, showDetails}) {
 
     const [SearchText, setSearchText ] = useState()
     const [ShowMenu, setShowMenu] = useState(false)
@@ -12,6 +12,7 @@ function ItemesSelections({selectItems}) {
 
     const fiterItems = (e)=>{
       setShowMenu(true)
+      showDetails(false)
       setSearchText(e.target.value)
       let srchText = e.target.value
       const filterdItems = items.filter((i)=> {return i.materialNumber.includes(srchText)} )
@@ -30,22 +31,23 @@ function ItemesSelections({selectItems}) {
       const selectdItems = Items.filter((i)=>{return i.select === true})
       selectItems(selectdItems)
       setShowMenu(false)
+      showDetails(true)
     }
 
     useEffect(()=>{setItems(items.sort((a, b)=> {return a.material - b.material}))},[])
 
   return (
-    <div className='relative w-full h-[50px] flex justify-between items-center space-x-3 shadow-md border-1 border-gray-400 rounded-md'>
+    <div className='relative p-1 w-full h-[50px] flex justify-between items-center space-x-3 shadow-md border-1 border-gray-400 rounded-md'>
         <input 
           value={SearchText}
           onChange={(e)=>{fiterItems(e)}}
           className='flex flex-1 h-full border-1 p-1 focus:outline-none ' 
           type = 'text' placeholder='Select SKUs' 
         />
-        {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>setShowMenu(!ShowMenu)} />}
-        {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>setShowMenu(!ShowMenu)} />}
-        <CheckCircleIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>addItems()} />
-        <div className={`absolute ${!ShowMenu? 'hidden' : null} w-full m-0 bg-slate-100 z-index-10 top-[50px] left-0 h-[500px] w-full overflow-y-scroll shadow-md`}>
+        {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(false)}} />}
+        {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(true)}} />}
+        <CheckCircleIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>addItems()} />
+        <div className={`absolute ${!ShowMenu? 'hidden' : null} p-2 w-full m-0 bg-slate-100 z-index-10 top-[52px] left-0 max-h-[350px] border-2 border-blue-500 rounded-xl  overflow-y-scroll shadow-md`}>
           {Items.map((i, index)=>{
             return (
               <div 

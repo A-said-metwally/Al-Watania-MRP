@@ -22,16 +22,24 @@ export default function Main() {
   const [Items, setItems] = useState([]) // first step selected items
   const [Alw, setAlw ] = useState()
   const [PlanInputs, setPlanInputs] = useState([]) // save plan inputs qty
+  const [ShowDetails, setShowDetails] = useState(false)
 
+  const showDetails = (e)=>setShowDetails(e)
 
   const getAlw = (e)=>{
     setAlw(e)
   }
 
-  const selectItems = (e)=>{
-    setItems([...Items, ...e])
-  }
+  // add selected items to plan 
+  const selectItems = (e)=>{setItems([...Items, ...e])}
 
+  // remove item from plan
+const removeItem = (e)=>{
+  setItems(Items.filter((p)=>{return p.material !== e}))
+  setPlanInputs(PlanInputs.filter((p)=>{return p.material !== e}))
+}
+
+// add ordered values to items
   const addData = (e) =>{ 
     // check if data already exist or not
     let chk = PlanInputs.filter((i)=>{ return i.material === e.material})
@@ -44,6 +52,7 @@ export default function Main() {
     }
 }
 
+
 // grouping whole chicken orders and portion orders
 const wholeOrders = wholeOrdersGrouping(PlanInputs)
 const portionOrders = portionOrdersGrouping(PlanInputs)
@@ -53,17 +62,18 @@ const [Distribution, setDistribution ] = useState([])
 
 // calculate distribution 
 let dist = []
+// let weights = ['500', '1000']
 let weights = ['500', '600', '700', '800', '900', '1000', '1100', '1200', '1300', '1400', '1500', '1600', '1700']
 
 function getDistribution(){
   if(Alw > 0 ){
     const broilerDt = broilerFilter(Alw, broiler)
-    let wt = []
-    let sum = 0
-    weights.forEach((w)=>{
-      broilerDt.forEach((e)=>{ wt.push(e[w]) }) // change
-      wt.forEach((n)=>{ sum += n })
-      let avg = sum / wt.length
+    weights.map((w)=>{
+      let r = []
+      let sum = 0
+      broilerDt.map((b)=>{if(b[w] != null){r.push(b[w])}} )
+      r.forEach((n)=>{ sum += n })
+      let avg = sum / r.length
       dist.push({group:[w][0],percent:avg})
     })
   }
@@ -133,8 +143,6 @@ let portionObj = []
 const createPortionObj = ()=>{
   portionOrders.map((obj)=>{
     let filteredObj = yieldMatrix.filter((e)=>{return e.family === obj.family })[0]
-    console.log(portionOrders)
-    console.log(yieldMatrix)
     portionObj.push({
       family:filteredObj.family,
       class:obj.class,
@@ -149,47 +157,98 @@ const createPortionObj = ()=>{
   setPortionObj(portionObj)
 }
 
+// get maximum count to achieve whole orders
+let wholeTot = 0 
+const wOrders = WholeObj.map((v)=>{return +v.order})// get total of orders qty
+const wholeValues = WholeObj.map((v)=>{return +v.toAchieved}).sort((a, b)=>{return b - a}) // get qty to achieved for whole orders 
+ 
+  wOrders.map((w)=>{ // fn to calculate total orders
+    wholeTot += w
+  })
 
-// calculation function
+  
+  let largestToAchieveWhole = 0
+  const getRequieredTowhole = ()=>{ // get required chkns to achieved whole
+    for(let i=0; i < wholeValues.length; i++){
+      if(largestToAchieveWhole >= wholeTot) break
+      largestToAchieveWhole += wholeValues[i]
+    }
+}
+getRequieredTowhole()
+
+
+// get maximum count to achieve portion orders
+const portionValues = PortionObj.map((v)=>{return +v.requiredChknKg})
+const largestToAchievePortion = Math.max(...portionValues)
+
+
+// calculate remained from whole after achievement required orders 
+const remainedItems = []
+function wholeRemained(){
+  const orderedItems = WholeObj.map((e)=>e.group)
+   Distribution.forEach((e)=>{
+    let i = orderedItems.indexOf(e.group)
+    if(i === -1){remainedItems.push(e)}
+  })
+  return remainedItems
+}
+wholeRemained()
+
+
+// calculation btn function
 const calc = ()=>{
   if(Alw !== undefined){
     createWholeChknObj()
     createPortionObj()
+    getLosses()
   }else{
     alert('Pls Inter Expected Avg Live Weight')
   }
 }
 
+
+
   useEffect(()=>{
     getDistribution()
-    getLosses()
+    // getLosses()
   }, [Alw])
 
   return (
-  <div className='relative h-[1050px] overflow-scroll scrollbar-hide'>
+  <div className='relative overflow-scroll scrollbar-hide'>
       {/* <Up/> */}
       <h1 className=' italic text-center text-purple-500 mb-5 font-serif font-bold'>Slaughtering MRP ...</h1>
-      <div className='flex justify-between h-full'>
+      <div className='flex justify-between'>
 
         {/* left side */}
-        <div className='w-1/2 p-2 h-full'>
-          <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full overflow-scroll scrollbar-hide'>
-            <ItemesSelections selectItems = {selectItems} />
-            <ItemsDetails Items = {Items} addData = {addData}/>
+        <div className='w-1/2 p-2 flex-1 flex-grow'>
+          <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
+            <ItemesSelections selectItems = {selectItems} showDetails = {showDetails}/>
+            {ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
           </div>
         </div>
 
 
         {/* right side */}
-        <div className=' relative w-1/2 p-2 h-full '>
-            <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full overflow-scroll scrollbar-hide'>
+        <div className=' relative w-1/2 p-2 flex-1 flex-grow'>
+            <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
               <Controls getAlw = {getAlw} calc = {calc}/>
               <hr className='w-[90%] relative top-[20px] left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
-              <Output/>
-              {PortionObj.length >0 && <Evaluation matrix = {yieldMatrix} portionObj = {PortionObj}/>}
+              <Output 
+                  losses = {Losses}
+                  largestToAchieveWhole = {largestToAchieveWhole}
+                  largestToAchievePortion = {largestToAchievePortion}
+              />
               <CalculationSteps losses = {Losses} />
-              { WholeObj.length >0 && <WholeSection wholeObj = {WholeObj}/>}
-              { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj}/>}
+              { WholeObj.length >0 &&   <WholeSection wholeObj = {WholeObj} neededCount = {largestToAchieveWhole}/>}
+              { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion}/>}
+              { PortionObj.length >0 && <Evaluation 
+                  wholeTot = {wholeTot}
+                  portionObj = {PortionObj} 
+                  largestToAchievePortion = {largestToAchievePortion}
+                  largestToAchieveWhole = {largestToAchieveWhole}
+                  remainedFromWholeDist = {remainedItems}
+                  />
+              }
             </div>
         </div>
       </div>
