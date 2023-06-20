@@ -207,20 +207,17 @@ const calc = ()=>{
 }
 
 
-
-  useEffect(()=>{
-    getDistribution()
-    // getLosses()
-  }, [Alw])
+  useEffect(()=>{getDistribution()}, [Alw])
 
   return (
   <div className='relative overflow-scroll scrollbar-hide'>
       {/* <Up/> */}
-      <h1 className=' italic text-center text-purple-500 mb-5 font-serif font-bold'>Slaughtering MRP ...</h1>
-      <div className='flex justify-between'>
+      <h1 className=' italic text-center text-purple-500 font-serif font-bold'>Slaughtering MRP ...</h1>
+      <p className='italic text-center text-lg text-gray-600'><span className=' font-semibold text-red-400'>V1</span> (Normal Case Without Any Special Spx)</p>
+      <div className='flex justify-between mt-5'>
 
         {/* left side */}
-        <div className='w-1/2 p-2 flex-1 flex-grow'>
+        <div className='w-1/2 p-2 flex-1 flex-grow '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
             <ItemesSelections selectItems = {selectItems} showDetails = {showDetails}/>
             {ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
