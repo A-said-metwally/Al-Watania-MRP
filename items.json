@@ -984,9 +984,9 @@
    "group": null,
    "family": "Liver",
    "class": "Gizzard",
-   "yieldFromChkn": "1.50",
+   "yieldFromChkn": "4",
    "yieldAfterEvas": "2.80",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1002,9 +1002,9 @@
    "group": null,
    "family": "Liver",
    "class": "Gizzard",
-   "yieldFromChkn": "1.50",
+   "yieldFromChkn": "4",
    "yieldAfterEvas": "2.80",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1022,7 +1022,7 @@
    "class": "Hearts",
    "yieldFromChkn": "4.00",
    "yieldAfterEvas": "4.00",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1040,7 +1040,7 @@
    "class": "Hearts",
    "yieldFromChkn": "4.00",
    "yieldAfterEvas": "4.00",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1058,7 +1058,7 @@
    "class": "Liver",
    "yieldFromChkn": "2.00",
    "yieldAfterEvas": "2.00",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1076,7 +1076,7 @@
    "class": "Liver",
    "yieldFromChkn": "2.00",
    "yieldAfterEvas": "2.00",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {
@@ -1094,7 +1094,7 @@
    "class": "Liver",
    "yieldFromChkn": "2.00",
    "yieldAfterEvas": "2.00",
-   "yieldFromFamily": "1.50",
+   "yieldFromFamily": "4",
    "select": false
  },
  {

@@ -47,7 +47,7 @@ function ItemesSelections({selectItems, showDetails}) {
         {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(false)}} />}
         {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(true)}} />}
         <CheckCircleIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>addItems()} />
-        <div className={`absolute ${!ShowMenu? 'hidden' : null} p-2 w-full m-0 bg-slate-100 z-index-10 top-[52px] left-0 max-h-[350px] border-2 border-blue-500 rounded-xl  overflow-y-scroll shadow-md`}>
+        <div className={`absolute ${!ShowMenu? 'hidden' : null} z-30 p-2 w-full m-0 bg-slate-100 z-index-10 top-[52px] left-0 max-h-[350px] border-2 border-blue-500 rounded-xl  overflow-y-scroll shadow-md`}>
           {Items.map((i, index)=>{
             return (
               <div 

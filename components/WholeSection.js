@@ -50,7 +50,7 @@ function WholeSection({wholeObj, neededCount}) {
             </tbody>
         </table>   
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 
-            shadow-md mt-3 hover:scale-105 cursor-pointer'>Needed Count to Cover Whole Orders :-  {Math.round(neededCount, 0).toLocaleString()} #</p> 
+            shadow-md mt-3 hover:scale-105 cursor-pointer'>Needed Count to Cover Whole Orders : {Math.round(neededCount, 0).toLocaleString()} Bird</p> 
     </div>
   )
 }

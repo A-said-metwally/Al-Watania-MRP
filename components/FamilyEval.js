@@ -19,8 +19,8 @@ function FamilyEval({family, order, outPut, st, act}) {
                     <p className='font-serif'>{Math.round(outPut, 0).toLocaleString()} <span className=' text-green-600 text-xl'>Kg</span></p>
                 </div>
                 <div className='flex flex-col items-center text-lg font-semibold'>
-                    <p>OverOrder</p>
-                    <p className='font-serif'>{order >0 ? Math.round((outPut - order), 0).toLocaleString() : 0} <span className=' text-green-600 text-xl'>Kg</span></p>
+                    <p className='text-red-500'>Stock</p>
+                    <p className='font-serif text-red-500'>{order >0 ? Math.round((outPut - order), 0).toLocaleString() : Math.round(outPut, 0)} <span className=' text-green-600 text-xl'>Kg</span></p>
                 </div>
             </div>
             <div className='flex justify-between mt-3 items-center p-3'>

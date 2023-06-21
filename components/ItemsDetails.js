@@ -29,13 +29,14 @@ function ItemsDetails({Items, addData, removeItem}) {
                 </tr>
             </thead>
             <tbody className='text-gray-600'>
-                {Items.map((d)=>(
+                {Items.map((d, index)=>(
                     <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
                         <th scope="row" className=' pt-3 pb-3'>{d.material}</th>
                         <td className=' pt-3 pb-3'>{d.materialNumber}</td>
                         <td className=' pt-3 pb-3'>
                             <input 
                                 type = 'number' 
+                                // defaultValue = {d.qty}
                                 placeholder='Qty' 
                                 className='w-[110px] text-[20px] text-center p-1 focus:outline-none border-1 border-blue-400 rounded-md'
                                 onBlur={(e)=> e.target.value.length > 0 && getData({...d, qty:+e.target.value})}

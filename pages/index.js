@@ -13,6 +13,7 @@ import broiler from '../broiler.json'
 import items from '../items.json'
 import { broilerFilter, portionOrdersGrouping, wholeOrdersGrouping } from '../utils/fn'
 import Evaluation from '../components/Evaluation'
+import WholeStock from '../components/WholeStock'
 
 
 
@@ -26,9 +27,7 @@ export default function Main() {
 
   const showDetails = (e)=>setShowDetails(e)
 
-  const getAlw = (e)=>{
-    setAlw(e)
-  }
+  const getAlw = (e)=>{ setAlw(e)}
 
   // add selected items to plan 
   const selectItems = (e)=>{setItems([...Items, ...e])}
@@ -150,7 +149,7 @@ const createPortionObj = ()=>{
       yieldFromChkn: +filteredObj.yieldFromChkn,
       yieldAfterEvas: +filteredObj.yieldAfterEvas,
       yieldFromFamily: +filteredObj.yieldFromFamily,
-      requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)),
+      requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)), // carcass kg required
       requiredFromFamilyKg: Math.ceil(obj.order / (+filteredObj.yieldFromFamily/100))
     })
   })
@@ -214,13 +213,15 @@ const calc = ()=>{
       {/* <Up/> */}
       <h1 className=' italic text-center text-purple-500 font-serif font-bold'>Slaughtering MRP ...</h1>
       <p className='italic text-center text-lg text-gray-600'><span className=' font-semibold text-red-400'>V1</span> (Normal Case Without Any Special Spx)</p>
+      <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision.</p>
       <div className='flex justify-between mt-5'>
 
         {/* left side */}
         <div className='w-1/2 p-2 flex-1 flex-grow '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
             <ItemesSelections selectItems = {selectItems} showDetails = {showDetails}/>
-            {ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
+            { ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
+            { Items.length === 0 && <p className='text-5xl font-semibold font-serif text-center text-blue-700 mt-[25%] animate-pulse'>Add Plan</p>}
           </div>
         </div>
 
@@ -239,12 +240,22 @@ const calc = ()=>{
               { WholeObj.length >0 &&   <WholeSection wholeObj = {WholeObj} neededCount = {largestToAchieveWhole}/>}
               { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion}/>}
               { PortionObj.length >0 && <Evaluation 
+                  Alw = {Alw}
                   wholeTot = {wholeTot}
                   portionObj = {PortionObj} 
                   largestToAchievePortion = {largestToAchievePortion}
                   largestToAchieveWhole = {largestToAchieveWhole}
                   remainedFromWholeDist = {remainedItems}
                   />
+              }
+              { wholeTot > 0 && <WholeStock
+                  Alw = {Alw}
+                  wholeTot = {wholeTot}
+                  portionObj = {PortionObj} 
+                  largestToAchievePortion = {largestToAchievePortion}
+                  largestToAchieveWhole = {largestToAchieveWhole}
+                  remainedFromWholeDist = {remainedItems}
+                />
               }
             </div>
         </div>
