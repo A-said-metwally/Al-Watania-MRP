@@ -2,7 +2,8 @@ import React from 'react'
 import {CalculatorIcon} from '@heroicons/react/outline'
 
 function WholeStock({Alw, wholeTot, remainedFromWholeDist, largestToAchieveWhole, largestToAchievePortion}) {
-  let x = largestToAchievePortion === -Infinity ? 0 : largestToAchievePortion
+    let w = largestToAchieveWhole
+    // let p = (largestToAchievePortion === -Infinity ? 0 : largestToAchievePortion)/ 0.70 / Alw
   return (
     <div className='  relative flex flex-col  mt-8'>
           <hr className='w-[90%] relative top-0 left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
@@ -37,7 +38,7 @@ function WholeStock({Alw, wholeTot, remainedFromWholeDist, largestToAchieveWhole
                           <th scope="row" className=' pt-3 pb-3 text-center'>{d.group}</th>
                           <td className=' pt-3 pb-3 text-center'>{(d.percent).toFixed(1)}<span className='text-blue-600'>%</span></td>
                           <td className=' pt-3 pb-3 text-center'>
-                            {Math.round((d.percent / 100 * (largestToAchieveWhole - ( x / 0.70 / Alw) - wholeTot )),0).toLocaleString()}
+                            {Math.round((d.percent / 100 * (w - wholeTot)),0).toLocaleString()}
                           </td>
                       </tr>
                   ))}
