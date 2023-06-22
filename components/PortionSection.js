@@ -4,7 +4,7 @@ import React from 'react'
 function PortionSection({Alw, portionObj, neededCount}) {
 
   return (
-    <div className='relative mt-16 mb-5'>
+    <div className='relative mt-16 mb-5 '>
         <hr className='w-[90%] relative top-0 left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
 
         <div className='flex items-center space-x-2 mt-[25px] cursor-pointer group'>
@@ -12,48 +12,69 @@ function PortionSection({Alw, portionObj, neededCount}) {
             <p className='text-sky-700 text-xl font-semibold'>Portion Chicken Calculation</p>
         </div>
 
-        <table className="table mt-3 ">
-            <thead className='text-gray-500'>
-                <tr>
-                    <th scope="col">
-                        <div className='flex justify-center items-center space-x-3'>
-                           <span>Family</span>
-                        </div> 
-                    </th>
-                    <th scope="col">
-                        <div className='flex justify-center items-center space-x-3'>
-                           <span>T-Order(Kg)</span>
-                        </div> 
-                    </th>
-                    <th scope="col">
-                        <div className='flex justify-center items-center space-x-3'>
-                            <span>% From Carcass</span>
-                        </div> 
-                    </th>
-                    <th scope="col">
-                        <div className='flex justify-center items-center space-x-3'>
-                            <span>Carcass(Kg) to Achieve</span>
-                        </div> 
-                    </th>
-                    <th scope="col">
-                        <div className='flex justify-center items-center space-x-3'>
-                            <span>Chkn(#) to Achieve</span>
-                        </div> 
-                    </th>
-                </tr>
-            </thead>
-            <tbody className='text-gray-600'>
-                {portionObj.map((d)=>(
-                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
-                        <th scope="row" className=' pt-3 pb-3 text-center'>{d.family}</th>
-                        <td className=' pt-3 pb-3 text-center'>{d.order}</td>
-                        <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
-                        <td className=' pt-3 pb-3 text-center'>{d.requiredChknKg}</td>
-                        <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / 0.70 / (Alw)),0)).toLocaleString()}</td>
+        <div className=' w-full overflow-x-scroll'>
+            <table className="table mt-3 ">
+                <thead className='text-gray-500'>
+                    <tr className=' text-center align-middle'>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                            <span>Family</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3 w-[200px]'>
+                            <span>Class</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                            <span>Order(Kg)</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>% From Carcass</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>% From Family</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>Carcass(Kg) to Achieve</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>Family(Kg) to Achieve</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>Chkn(#) to Achieve</span>
+                            </div> 
+                        </th>
                     </tr>
-                ))}
-            </tbody>
-        </table>   
+                </thead>
+                <tbody className='text-gray-600'>
+                    {portionObj.map((d)=>(
+                        <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
+                            <th className=' pt-3 pb-3 text-center'>{d.family}</th>
+                            <th className=' pt-3 pb-3 text-center'>{d.class}</th>
+                            <td className=' pt-3 pb-3 text-center'>{d.order}</td>
+                            <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
+                            <td className=' pt-3 pb-3 text-center'>{d.yieldFromFamily}<span className='text-blue-600'>%</span></td>
+                            <td className=' pt-3 pb-3 text-center'>{Math.round(d.requiredChknKg, 0).toLocaleString()}</td>
+                            <td className=' pt-3 pb-3 text-center'>{(Math.round(d.requiredFromFamilyKg, 0)).toLocaleString()}</td>
+                            <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / 0.70 / (Alw)),0)).toLocaleString()}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>   
+        </div>
+
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3 hover:scale-105 cursor-pointer'>
             Needed Qty to Cover Portion Orders : 
                 <span> </span>{Math.round(neededCount, 0).toLocaleString()} Kg

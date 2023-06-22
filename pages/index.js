@@ -13,7 +13,8 @@ import broiler from '../broiler.json'
 import items from '../items.json'
 import { broilerFilter, portionOrdersGrouping, wholeOrdersGrouping } from '../utils/fn'
 import Evaluation from '../components/Evaluation'
-import WholeStock from '../components/WholeStock'
+import WholeDistribution from '../components/WholeDistribution'
+import OverStock from '../components/OverStock'
 
 
 
@@ -141,7 +142,8 @@ let portionObj = []
 
 const createPortionObj = ()=>{
   portionOrders.map((obj)=>{
-    let filteredObj = yieldMatrix.filter((e)=>{return e.family === obj.family })[0]
+    let filteredObj = yieldMatrix.filter((e)=>{return e.class === obj.class })[0]
+    // let filteredObj = yieldMatrix.filter((e)=>{return e.family === obj.family })[0]
     portionObj.push({
       family:filteredObj.family,
       class:obj.class,
@@ -217,7 +219,7 @@ const calc = ()=>{
       <div className='flex justify-between mt-5'>
 
         {/* left side */}
-        <div className='w-1/2 p-2 flex-1 flex-grow '>
+        <div className='w-[40%] p-2 '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
             <ItemesSelections selectItems = {selectItems} showDetails = {showDetails}/>
             { ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
@@ -227,7 +229,7 @@ const calc = ()=>{
 
 
         {/* right side */}
-        <div className=' relative w-1/2 p-2 flex-1 flex-grow'>
+        <div className=' relative w-[60%] p-2 flex-1 flex-grow'>
             <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
               <Controls getAlw = {getAlw} calc = {calc}/>
               <hr className='w-[90%] relative top-[20px] left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
@@ -237,6 +239,7 @@ const calc = ()=>{
                   largestToAchievePortion = {largestToAchievePortion}
               />
               <CalculationSteps losses = {Losses} />
+              {Alw && <WholeDistribution Distribution = {Distribution}/>}
               { WholeObj.length >0 &&   <WholeSection wholeObj = {WholeObj} neededCount = {largestToAchieveWhole}/>}
               { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion}/>}
               { PortionObj.length >0 && <Evaluation 
@@ -248,7 +251,8 @@ const calc = ()=>{
                   remainedFromWholeDist = {remainedItems}
                   />
               }
-              { wholeTot > 0 && <WholeStock
+              {(wholeTot != 0 || largestToAchievePortion >0 ) && 
+                <OverStock
                   Alw = {Alw}
                   wholeTot = {wholeTot}
                   portionObj = {PortionObj} 

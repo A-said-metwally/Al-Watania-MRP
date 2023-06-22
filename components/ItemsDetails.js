@@ -6,7 +6,7 @@ function ItemsDetails({Items, addData, removeItem}) {
     const getData = (e)=>{addData(e)}
 
   return (
-    <div>
+    <div className=''>
         <table className="table mt-10 mb-5">
             <thead className='text-gray-500'>
                 <tr>
@@ -30,9 +30,9 @@ function ItemsDetails({Items, addData, removeItem}) {
             </thead>
             <tbody className='text-gray-600'>
                 {Items.map((d, index)=>(
-                    <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
-                        <th scope="row" className=' pt-3 pb-3'>{d.material}</th>
-                        <td className=' pt-3 pb-3'>{d.materialNumber}</td>
+                    <tr key = {index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 cursor-pointer text-md'>
+                        <th scope="row" className=' pt-3 pb-3 align-middle'>{d.material}</th>
+                        <td className=' pt-3 pb-3 align-middle'>{d.materialNumber}</td>
                         <td className=' pt-3 pb-3'>
                             <input 
                                 type = 'number' 

@@ -4,7 +4,16 @@ import yieldMatrix from '../yield.json'
 import {CalculatorIcon} from '@heroicons/react/outline'
 
 function Evaluation({portionObj, largestToAchievePortion}) {
+  const getOrder = (f)=>{
+    let order = 0
+    let familyOrders = portionObj.filter((e)=>{ return e.family === f })
+    familyOrders.map((o)=>{return order += o.order})
+    return order
+  }
 
+  
+
+// console.log(getOrder())
   return (
     <div className='  relative flex flex-col  mt-8'>
         <hr className='w-[90%] relative top-0 left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
@@ -20,7 +29,7 @@ function Evaluation({portionObj, largestToAchievePortion}) {
               <FamilyEval 
                 key = {index}
                 family = {y.family} 
-                order = {portionObj.filter((e)=>{ return e.family === y.family})[0]?.order}
+                order = {getOrder(y.family)}
                 outPut = {largestToAchievePortion * (y.st /100)}
                 st = {y.st} 
                 act = {25.6} 

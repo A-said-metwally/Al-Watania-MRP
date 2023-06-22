@@ -27,7 +27,7 @@ export const portionOrdersGrouping = (e)=>{
   const parts = e.filter((e)=>{return e.classification === 'Parts'})
   const portionGroup = {};
   parts.forEach(obj => {
-    const key = obj.family;
+    const key = obj.family + "|" + obj.class;
     if (!portionGroup[key]) {
       portionGroup[key] = [];
         }
@@ -38,8 +38,10 @@ export const portionOrdersGrouping = (e)=>{
   for (const key in portionGroup) {
     const group = portionGroup[key];
     const sum = group.reduce((acc, obj) => acc + (obj.qty * obj.weight), 0);
+    let address = key.split('|')
     portionGroupResult.push({
-      family:key,
+      family:address[0],
+      class:address[1],
       order:sum
     })
   }
