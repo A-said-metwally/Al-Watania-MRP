@@ -1,0 +1,66 @@
+import React from 'react'
+
+function ViewBom({SelectedItem, Bom, hideBom}) {
+  return (
+    <div className=' fixed top-1/2 left-1/2 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2
+        z-10 flex flex-col bg-gray-700 border-1 border-orange-500 rounded-2xl shadow-md'>
+        <button 
+            className=' absolute top-3 right-4 text-xl text-gray-100 border-1 rounded-full h-10 w-10 font-bold hover:bg-slate-50 hover:text-red-500  hover:cursor-pointer'
+            onClick={()=>hideBom()}
+        >X</button>
+        <p className='text-lg text-left text-white p-3 font-semibold'>{SelectedItem}</p>
+        <table className="table p-3 mt-[10px]  w-full overflow-x-scroll">
+            <thead className='text-white text-md '>
+                <tr>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>Family</span>
+                        </div> 
+                    </th>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>Class</span>
+                        </div> 
+                    </th>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>yield From Chkn</span>
+                        </div> 
+                    </th>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>yield After Evas</span>
+                        </div> 
+                    </th>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>yield From Family</span>
+                        </div> 
+                    </th>
+                    <th scope="col" >
+                        <div className='flex justify-center items-center space-x-3'>
+                            <span className=' capitalize'>Contribution</span>
+                        </div> 
+                    </th>
+                </tr>
+            </thead>
+            <tbody className='text-white'>
+                {Bom?.map((elm, index)=>{
+                    return (
+                        <tr key = {index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
+                            <td className=' pt-3 pb-3 text-center'>{elm.family}</td>
+                            <td className=' pt-3 pb-3 text-center'>{elm.class}</td>
+                            <td className=' pt-3 pb-3 text-center'>{(+elm.yieldFromChkn).toFixed(1)}%</td>
+                            <td className=' pt-3 pb-3 text-center'>{(+elm.yieldAfterEvas).toFixed(1)}%</td>
+                            <td className=' pt-3 pb-3 text-center'>{(+elm.yieldFromFamily).toFixed(1)}%</td>
+                            <td className=' pt-3 pb-3 text-center'>{elm.contribution*100}%</td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
+    </div>          
+)
+}
+
+export default ViewBom

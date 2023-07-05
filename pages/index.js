@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {InformationCircleIcon} from '@heroicons/react/outline'
 import Up from '../components/Up'
+import Loading from '../components/Loading'
 import ItemesSelections from '../components/ItemesSelections'
 import ItemsDetails from '../components/ItemsDetails'
 import Controls from '../components/Controls'
@@ -222,17 +223,14 @@ const calc = ()=>{
   }
 }
 
-
   useEffect(()=>{getDistribution()}, [Alw])
 
   return (
-  <div className='relative overflow-scroll scrollbar-hide'>
-      {/* <Up/> */}
-      <h1 className=' italic text-center text-purple-500 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small>...</h1>
-      {/* <p className='italic text-center text-lg text-gray-600'><span className=' font-semibold text-red-400'>V2</span> (Normal Case Without Any Special Spx)</p> */}
+    <div className='relative overflow-scroll scrollbar-hide'>
+      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small>...</h1>
       <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision and Show that if your plan within roles or not. </p>
+      
       <div className='flex justify-between mt-5'>
-
         {/* left side */}
         <div className='w-[40%] p-2 '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
@@ -280,7 +278,7 @@ const calc = ()=>{
             </div>
         </div>
       </div>
-  </div>
+    </div>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import items from '../items.json'
 import { ChevronUpIcon, ChevronDownIcon, DocumentDownloadIcon } from '@heroicons/react/outline'
 import { handleExportExcel } from '../firebase/actions'
+import ViewBom from '../components/ViewBom'
 
 function Yield() {
     let tableHeader = ["materialNumber", "classification", "netweight", "wUn", "division", "count", "cartonWt", "weight", "group", "family", "class", "yieldFromChkn","yieldAfterEvas", "yieldFromFamily"]
@@ -9,6 +10,10 @@ function Yield() {
     let customHeader = tableHeader.filter((h)=>{return !excludedHeaderValues.includes(h)})
 
     const [Items, setItems]= useState(items)
+    const [SelectedItem, setSelectedItem]= useState('')
+    const [Bom, setBom] = useState([])
+    const [ShowBom, setShowBom] = useState(false)
+    
 
     const sort = (e, t)=>{
         if(t === 'asc'){
@@ -24,21 +29,28 @@ function Yield() {
         return (
             <button 
                 className='bg-blue-500 px-3 py-2 text-white rounded-lg hover:cursor-pointer hover:scale-105 hover:bg-green-500'
-                onClick={()=>console.log(e)}
+                onClick={()=>{
+                    setSelectedItem(e.materialNumber)
+                    setBom(e.bom)
+                    setShowBom(true)
+                    }
+                }
             >Bom</button>
         )
     }
+
+const hideBom = ()=>{setShowBom(false)}
+
 return (
-    <div className=' flex flex-col p-2'>
+    <div className='relative flex flex-col p-2'>
         <div className=' relative '>
-            <div className='fixed bottom-0 left-0 w-full h-10 bg-blue-700 text-right align-middle p-1'>
+            <div className='fixed rounded-t-xl bottom-0 left-0 w-full h-10 bg-blue-700 hover:bg-green-700 text-right align-middle p-1'>
                 <button
                     onClick={()=>handleExportExcel(Items, 'Yield Matrix')}
                     className='transition duration-105 text-xl mr-5
                     cursor-pointer hover:scale-105 text-white font-bold  '
                     >
                         Xlsx
-                    {/* <DocumentDownloadIcon className=' h-8 w-8  cursor-pointer hover:text-green-500'/> */}
                 </button>
             </div>
 
@@ -82,6 +94,9 @@ return (
                 </tbody>
             </table>
         </div>
+        
+      {/* show bom */}
+      {ShowBom && <ViewBom SelectedItem = {SelectedItem} Bom={Bom} hideBom = {hideBom}/>}
 
     </div>
   )
