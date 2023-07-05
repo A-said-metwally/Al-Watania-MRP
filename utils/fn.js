@@ -24,16 +24,41 @@ export const wholeOrdersGrouping = (e)=>{
 
 // group portion plan items
 export const portionOrdersGrouping = (e)=>{
-  const parts = e.filter((e)=>{return e.classification === 'Parts'})
+  const allParts = e.filter((e)=>{return e.classification === 'Parts'}) // exclude all parts items
+  const normalParts = allParts.filter((p)=>{return p.family != 'Bom'}) // exclude parts with out mixed parts
+  const specialParts = allParts.filter((p)=>{return p.family === 'Bom'}) // exclude only mixed parts
+
   const portionGroup = {};
-  parts.forEach(obj => {
+  // first grouping normal items according family & class
+  normalParts.forEach(obj => {
     const key = obj.family + "|" + obj.class;
     if (!portionGroup[key]) {
       portionGroup[key] = [];
         }
         portionGroup[key].push(obj);
       })
-      
+  // second grouping mixed parts items
+  specialParts.forEach(item => {
+    const {material, materialNumber, classification, netweight, wUn, division, count, cartonWt, weight, qty} = item
+    const bom = item.bom
+      bom.forEach(obj =>{ // loop on every object in Bom
+        const key = obj.family + "|" + obj.class;
+        let {family, yieldFromChkn, yieldAfterEvas, yieldFromFamily, contribution} = obj
+        let class_ = obj.class
+
+        if (!portionGroup[key]) {
+          portionGroup[key] = [];
+            }
+            portionGroup[key].push({ // extract all object data & bom in new object and calculate need qty according contribution 
+              family,
+              class : class_ ,
+              material, materialNumber, classification, netweight, wUn, division, count, cartonWt, weight,
+              yieldFromChkn, yieldAfterEvas, yieldFromFamily, contribution,
+              qty : qty * contribution
+            });        
+      })
+  })
+
   let portionGroupResult = []
   for (const key in portionGroup) {
     const group = portionGroup[key];
@@ -47,6 +72,10 @@ export const portionOrdersGrouping = (e)=>{
   }
   return portionGroupResult
 }
+
+
+
+
 
 // filter broiler data with in range according live weight
 export const broilerFilter = (LW, broiler)=>{ 

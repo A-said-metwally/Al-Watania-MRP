@@ -1,8 +1,8 @@
 import React from 'react'
 import {QuestionMarkCircleIcon} from '@heroicons/react/outline'
 
-function Output({losses, largestToAchieveWhole, largestToAchievePortion}) {
-  let max = Math.max(largestToAchieveWhole, largestToAchievePortion)
+function Output({Alw, losses, largestToAchieveWhole, largestToAchievePortion}) {
+  let max = Math.max(largestToAchieveWhole, (largestToAchievePortion / Alw ))
   let count = max + (max * losses/100)
   return (
     <div className='flex justify-center mt-[100px]'>

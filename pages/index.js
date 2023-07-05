@@ -120,18 +120,33 @@ let yieldArr = [];
 let yieldMatrix = [];
 
 const getYield = ()=>{
-  let parts = items.filter((e)=>{return e.classification === 'Parts'}) // filter on parts items
-  parts.map((e)=>{
-   yieldArr.push(
-        {
-          family: e.family,
-          class: e.class,
-          yieldFromChkn: e.yieldFromChkn,
-          yieldAfterEvas: e.yieldAfterEvas,
-          yieldFromFamily: e.yieldFromFamily,
-        })      
-  })
-  const uniqueObj = Array.from(new Set(yieldArr.map(obj => JSON.stringify(obj))))
+  let normalParts = items.filter((e)=>{return e.classification === 'Parts' && e.family !== 'Bom'}) // filter on parts items
+  let specialParts = items.filter((e)=>{return e.classification === 'Parts' && e.family === 'Bom'}) // filter on parts items
+
+  normalParts.map((e)=>{ // loop on normal items without mixed parts
+    yieldArr.push(
+         {
+           family: e.family,
+           class: e.class,
+           yieldFromChkn: e.yieldFromChkn,
+           yieldAfterEvas: e.yieldAfterEvas,
+           yieldFromFamily: e.yieldFromFamily,
+         })      
+   })
+   specialParts.map((e)=>{ // loop on mixed parts
+    let bom = e.bom
+      bom.map((b)=>{
+        yieldArr.push(
+             {
+               family: b.family,
+               class: b.class,
+               yieldFromChkn: b.yieldFromChkn,
+               yieldAfterEvas: b.yieldAfterEvas,
+               yieldFromFamily: b.yieldFromFamily,
+             })      
+      })
+   })
+    const uniqueObj = Array.from(new Set(yieldArr.map(obj => JSON.stringify(obj))))
   yieldMatrix = uniqueObj.map(str => JSON.parse(str)).filter((e)=>{return e.yieldFromChkn !== ''})
 }
 
@@ -213,9 +228,9 @@ const calc = ()=>{
   return (
   <div className='relative overflow-scroll scrollbar-hide'>
       {/* <Up/> */}
-      <h1 className=' italic text-center text-purple-500 font-serif font-bold'>Slaughtering MRP ...</h1>
-      <p className='italic text-center text-lg text-gray-600'><span className=' font-semibold text-red-400'>V1</span> (Normal Case Without Any Special Spx)</p>
-      <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision.</p>
+      <h1 className=' italic text-center text-purple-500 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small>...</h1>
+      {/* <p className='italic text-center text-lg text-gray-600'><span className=' font-semibold text-red-400'>V2</span> (Normal Case Without Any Special Spx)</p> */}
+      <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision and Show that if your plan within roles or not. </p>
       <div className='flex justify-between mt-5'>
 
         {/* left side */}
@@ -234,6 +249,7 @@ const calc = ()=>{
               <Controls getAlw = {getAlw} calc = {calc}/>
               <hr className='w-[90%] relative top-[20px] left-1/2 -translate-x-1/2 bg-orange-400 opacity-100'/>
               <Output 
+                  Alw = {Alw}
                   losses = {Losses}
                   largestToAchieveWhole = {largestToAchieveWhole}
                   largestToAchievePortion = {largestToAchievePortion}

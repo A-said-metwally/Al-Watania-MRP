@@ -3,7 +3,6 @@ import DistributionBox from './DistributionBox'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 
 function WholeDistribution({Distribution}) {
-  console.log(Distribution)
   return (
     <div className='mt-5 mb-5 '>
 

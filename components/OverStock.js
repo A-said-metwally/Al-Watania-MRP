@@ -60,7 +60,7 @@ function OverStock({Alw, wholeTot, remainedFromWholeDist, largestToAchieveWhole,
             </div>
 
             <div className="tab-pane fade" id="portionStock-pane" role="tabpanel" aria-labelledby="portionStock" tabIndex="0">
-                <p className=' text-center text-2xl text-blue-500 font-bold mt-5'>No Portion Orders</p>
+                <p className=' text-center text-2xl text-blue-500 font-bold mt-5'>On Progress</p>
             </div>
         </div>
 

@@ -33,7 +33,7 @@ function PortionSection({Alw, portionObj, neededCount}) {
                         </th>
                         <th scope="col" className=' align-middle'>
                             <div className='flex justify-center items-center space-x-3'>
-                                <span>% From Carcass</span>
+                                <span>% From Chicken</span>
                             </div> 
                         </th>
                         <th scope="col" className=' align-middle'>
@@ -43,7 +43,7 @@ function PortionSection({Alw, portionObj, neededCount}) {
                         </th>
                         <th scope="col" className=' align-middle'>
                             <div className='flex justify-center items-center space-x-3'>
-                                <span>Carcass(Kg) to Achieve</span>
+                                <span>Chkn(Kg) to Achieve</span>
                             </div> 
                         </th>
                         <th scope="col" className=' align-middle'>
@@ -63,12 +63,12 @@ function PortionSection({Alw, portionObj, neededCount}) {
                         <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                             <th className=' pt-3 pb-3 text-center'>{d.family}</th>
                             <th className=' pt-3 pb-3 text-center'>{d.class}</th>
-                            <td className=' pt-3 pb-3 text-center'>{d.order}</td>
+                            <td className=' pt-3 pb-3 text-center'>{(d.order).toFixed(2)}</td>
                             <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{d.yieldFromFamily}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{Math.round(d.requiredChknKg, 0).toLocaleString()}</td>
                             <td className=' pt-3 pb-3 text-center'>{(Math.round(d.requiredFromFamilyKg, 0)).toLocaleString()}</td>
-                            <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / 0.70 / (Alw)),0)).toLocaleString()}</td>
+                            <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / (Alw)),0)).toLocaleString()}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -78,7 +78,7 @@ function PortionSection({Alw, portionObj, neededCount}) {
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3 hover:scale-105 cursor-pointer'>
             Needed Qty to Cover Portion Orders : 
                 <span> </span>{Math.round(neededCount, 0).toLocaleString()} Kg
-                <span> , </span>{Math.round(neededCount / 0.70 / Alw, 0).toLocaleString()} Bird
+                <span> , </span>{Math.round(neededCount / Alw, 0).toLocaleString()} Bird
         </p> 
 
     </div>
