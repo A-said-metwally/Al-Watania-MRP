@@ -6,16 +6,8 @@ import '../styles/globals.css'
 
 
 function MyApp({ Component, pageProps }) {
-  const [ShowLoading, setShowLoading] = useState(true)
-
-  useEffect(()=>{setTimeout(() => {
-    setShowLoading(false)
-  }, 2000); 
-},[])
-
   return (
       <div className=' relative overflow-auto scroll-smooth'>
-        {ShowLoading && <Loading/>}
         <Head title="Al Watania MRP"/>
         <Header/>
         <Component {...pageProps}   />    
