@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import {ChevronDownIcon, CheckCircleIcon, ChevronUpIcon} from '@heroicons/react/outline'
-import { useEffect } from 'react'
+import React, { useState , useEffect} from 'react'
+import {ChevronDownIcon, CheckCircleIcon, ChevronUpIcon, UploadIcon} from '@heroicons/react/outline'
+import * as XLSX from 'xlsx'
 import items from '../items.json'
 
 
-function ItemesSelections({selectItems, showDetails}) {
+function ItemesSelections({selectItems, uploadData, failedData, showDetails}) {
 
     const [SearchText, setSearchText ] = useState()
     const [ShowMenu, setShowMenu] = useState(false)
     const [Items, setItems] = useState([])
+    const [UploadedData, setUploadedData] = useState([])
 
     const fiterItems = (e)=>{
       setShowMenu(true)
@@ -33,8 +34,49 @@ function ItemesSelections({selectItems, showDetails}) {
       setShowMenu(false)
       showDetails(true)
     }
+    const selectFile = ()=>{
+      const selectBtn = document.getElementById('file')
+      selectBtn.click()
+    }
+    // function to import data from excel
+    const handleUpload = ($e)=>{
+      const file = $e.target.files[0]
+      const reader = new FileReader()
+      reader.onload = (e)=>{
+        const wb = XLSX.read(e.target.result)
+        const sheets = wb.SheetNames
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheets[0]]) // store data in rows
+        setUploadedData(rows)
+      }
+      reader.readAsArrayBuffer(file)
+    }
+    
+    const preparUplodedData = ()=>{
+      let preparedData = []
+      let failedItems = []
+      UploadedData.forEach((d)=>{
+        const i = items.filter((e)=>{return e.material === d.material}) // check if item exist or not
+        if(i.length > 0){
+          const item = items.filter((i)=>{return i.material === d.material})
+          if(item[0].classification === 'Parts' && item[0].family !== '' && item[0].class !== ''){
+            preparedData.push({...item[0], qty:d.qty})
+          }else{
+            failedItems.push(d)
+          }
+        }else{
+          failedItems.push(d)
+        }
+      })
+      selectItems(preparedData)
+      uploadData(preparedData)
+      failedData(failedItems)
+      setShowMenu(false)
+      showDetails(true)
+    }
+    
 
     useEffect(()=>{setItems(items.sort((a, b)=> {return a.material - b.material}))},[])
+    useEffect(()=>{preparUplodedData()},[UploadedData.length])
 
   return (
     <div className='relative p-1 w-full h-[50px] flex justify-between items-center space-x-3 shadow-md border-1 border-gray-400 rounded-md'>
@@ -44,8 +86,10 @@ function ItemesSelections({selectItems, showDetails}) {
           className='flex flex-1 h-full border-1 p-1 focus:outline-none ' 
           type = 'text' placeholder='Select SKUs' 
         />
+        <input type="file" name='file' id='file' onChange={handleUpload} className='hidden'/>
         {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(false)}} />}
         {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(true)}} />}
+        <UploadIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>selectFile()} />
         <CheckCircleIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>addItems()} />
         <div className={`absolute ${!ShowMenu? 'hidden' : null} z-30 p-2 w-full m-0 bg-slate-100 z-index-10 top-[52px] left-0 max-h-[350px] border-2 border-blue-500 rounded-xl  overflow-y-scroll shadow-md`}>
           {Items.map((i, index)=>{

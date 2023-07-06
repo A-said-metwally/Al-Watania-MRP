@@ -1109,7 +1109,7 @@
    "weight": 10,
    "group": null,
    "family": "Bom",
-   "class": "",
+   "class": "Bom",
    "bom":[
     {"family":"Breast", "class":"Breast Without Wings", "yieldFromChkn": "27.90","yieldAfterEvas": "41.0", "yieldFromFamily": "77.3", "contribution":0.435},
     {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.12},
@@ -1133,7 +1133,7 @@
    "weight": 10,
    "group": null,
    "family": "Bom",
-   "class": "",
+   "class": "Bom",
    "bom":[
     {"family":"Breast", "class":"Breast Without Wings", "yieldFromChkn": "27.90","yieldAfterEvas": "41.0", "yieldFromFamily": "77.3", "contribution":0.435},
     {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.120},
@@ -1157,7 +1157,7 @@
    "weight": 0.9,
    "group": null,
    "family": "Bom",
-   "class": "",
+   "class": "Bom",
    "bom":[
     {"family":"Breast", "class":"Back Bone", "yieldFromChkn": "7.5","yieldAfterEvas": "11.0", "yieldFromFamily": "35.0", "contribution":0.069},
     {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.292},
@@ -1181,7 +1181,7 @@
   "weight": 1,
   "group": null,
   "family": "Bom",
-  "class": "",
+  "class": "Bom",
   "bom":[
    {"family":"Breast", "class":"Back Bone", "yieldFromChkn": "7.5","yieldAfterEvas": "11.0", "yieldFromFamily": "77.3", "contribution":0.075},
    {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.325},

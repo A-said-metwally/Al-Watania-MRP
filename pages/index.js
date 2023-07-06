@@ -26,6 +26,7 @@ export default function Main() {
   const [Alw, setAlw ] = useState()
   const [PlanInputs, setPlanInputs] = useState([]) // save plan inputs qty
   const [ShowDetails, setShowDetails] = useState(false)
+  const [FailedData, setFailedData] = useState([])
 
   const showDetails = (e)=>setShowDetails(e)
 
@@ -40,7 +41,7 @@ const removeItem = (e)=>{
   setPlanInputs(PlanInputs.filter((p)=>{return p.material !== e}))
 }
 
-// add ordered values to items
+// add ordered values to items on normal case
   const addData = (e) =>{ 
     // check if data already exist or not
     let chk = PlanInputs.filter((i)=>{ return i.material === e.material})
@@ -53,6 +54,11 @@ const removeItem = (e)=>{
     }
 }
 
+// add ordered values to items in uploading data from excel
+const uploadData = (d)=>{setPlanInputs(d)}
+
+// get failed data
+const failedData = (d)=>{setFailedData(d)}
 
 // grouping whole chicken orders and portion orders
 const wholeOrders = wholeOrdersGrouping(PlanInputs)
@@ -148,10 +154,13 @@ const getYield = ()=>{
       })
    })
     const uniqueObj = Array.from(new Set(yieldArr.map(obj => JSON.stringify(obj))))
-  yieldMatrix = uniqueObj.map(str => JSON.parse(str)).filter((e)=>{return e.yieldFromChkn !== ''})
+  yieldMatrix = uniqueObj.map(str => JSON.parse(str)).filter((x)=>{return x.yieldFromChkn !== ''})
 }
 
 getYield()
+
+
+
 
 const [PortionObj, setPortionObj] = useState([])
 let portionObj = []
@@ -159,7 +168,6 @@ let portionObj = []
 const createPortionObj = ()=>{
   portionOrders.map((obj)=>{
     let filteredObj = yieldMatrix.filter((e)=>{return e.class === obj.class })[0]
-    // let filteredObj = yieldMatrix.filter((e)=>{return e.family === obj.family })[0]
     portionObj.push({
       family:filteredObj.family,
       class:obj.class,
@@ -234,8 +242,8 @@ const calc = ()=>{
         {/* left side */}
         <div className='w-[40%] p-2 '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
-            <ItemesSelections selectItems = {selectItems} showDetails = {showDetails}/>
-            { ShowDetails && <ItemsDetails Items = {Items} addData = {addData} removeItem = {removeItem}/>}
+            <ItemesSelections selectItems = {selectItems} uploadData = {uploadData} failedData = {failedData} showDetails = {showDetails}/>
+            { ShowDetails && <ItemsDetails Items = {Items} failedData = {FailedData} addData = {addData} removeItem = {removeItem}/>}
             { Items.length === 0 && <p className='text-5xl font-semibold font-serif text-center text-blue-700 mt-[25%] animate-pulse'>Add Plan</p>}
           </div>
         </div>

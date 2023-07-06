@@ -63,7 +63,7 @@ function PortionSection({Alw, portionObj, neededCount}) {
                         <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                             <th className=' pt-3 pb-3 text-center'>{d.family}</th>
                             <th className=' pt-3 pb-3 text-center'>{d.class}</th>
-                            <td className=' pt-3 pb-3 text-center'>{(d.order).toFixed(2)}</td>
+                            <td className=' pt-3 pb-3 text-center'>{Math.round(d.order, 2).toLocaleString()}</td>
                             <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{d.yieldFromFamily}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{Math.round(d.requiredChknKg, 0).toLocaleString()}</td>
