@@ -59,7 +59,9 @@ function ItemesSelections({selectItems, uploadData, failedData}) {
         const i = items.filter((e)=>{return e.material === d.material}) // check if item exist or not
         if(i.length > 0){
           const item = items.filter((i)=>{return i.material === d.material})
-          if(item[0].classification === 'Parts' && item[0].family !== '' && item[0].class !== ''){
+          if(item[0].classification === 'Whole'){
+            preparedData.push({...item[0], qty:d.qty})
+          }else if(item[0].classification === 'Parts' && item[0].family !== '' && item[0].class !== ''){
             preparedData.push({...item[0], qty:d.qty})
           }else{
             failedItems.push(d)
