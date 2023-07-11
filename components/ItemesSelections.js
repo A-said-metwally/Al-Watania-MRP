@@ -4,7 +4,7 @@ import * as XLSX from 'xlsx'
 import items from '../items.json'
 
 
-function ItemesSelections({selectItems, uploadData, failedData, showDetails}) {
+function ItemesSelections({selectItems, uploadData, failedData}) {
 
     const [SearchText, setSearchText ] = useState()
     const [ShowMenu, setShowMenu] = useState(false)
@@ -32,9 +32,10 @@ function ItemesSelections({selectItems, uploadData, failedData, showDetails}) {
       const selectdItems = Items.filter((i)=>{return i.select === true})
       selectItems(selectdItems)
       setShowMenu(false)
-      showDetails(true)
+      // showDetails(true)
     }
     const selectFile = ()=>{
+      alert('Note : Uploaded File Must Be Contain material & qty')
       const selectBtn = document.getElementById('file')
       selectBtn.click()
     }
@@ -71,7 +72,7 @@ function ItemesSelections({selectItems, uploadData, failedData, showDetails}) {
       uploadData(preparedData)
       failedData(failedItems)
       setShowMenu(false)
-      showDetails(true)
+      // showDetails(true)
     }
     
 
@@ -87,8 +88,8 @@ function ItemesSelections({selectItems, uploadData, failedData, showDetails}) {
           type = 'text' placeholder='Select SKUs' 
         />
         <input type="file" name='file' id='file' onChange={handleUpload} className='hidden'/>
-        {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(false)}} />}
-        {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu), showDetails(true)}} />}
+        {!ShowMenu && <ChevronDownIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu)}} />}
+        {ShowMenu && <ChevronUpIcon className='h-6 w-6 hover:scale-105 hover:text-blue-500 cursor-pointer' onClick={()=>{setShowMenu(!ShowMenu)}} />}
         <UploadIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>selectFile()} />
         <CheckCircleIcon className='h-7 w-7 hover:scale-105 hover:text-green-600 cursor-pointer' onClick={()=>addItems()} />
         <div className={`absolute ${!ShowMenu? 'hidden' : null} z-30 p-2 w-full m-0 bg-slate-100 z-index-10 top-[52px] left-0 max-h-[350px] border-2 border-blue-500 rounded-xl  overflow-y-scroll shadow-md`}>

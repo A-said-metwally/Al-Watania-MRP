@@ -1,21 +1,31 @@
-import React from 'react'
-import {ArrowDownIcon, ChevronDownIcon, TrashIcon} from '@heroicons/react/outline'
+import React , { useState }from 'react'
+import {ArrowDownIcon, ChevronDownIcon, DocumentDownloadIcon, TrashIcon} from '@heroicons/react/outline'
+import { handleExportExcel } from '../firebase/actions'
+import FailedItems from './FailedItems'
 
 function ItemsDetails({Items, failedData, addData, removeItem}) {
 
     const getData = (e)=>{addData(e)}
+    const [ShowFailedData, setShowFailedData] = useState(false)
+    const hideFailedData = ()=>setShowFailedData(false)
 
   return (
     <div className=''>
-        <div className='flex justify-between text-xl font-semibold w-full h-10 rounded-lg mt-2'>
+        <div className='flex justify-between text-lg font-semibold w-full h-10 rounded-lg mt-2'>
             <p className=' flex items-center space-x-2 text-green-600 rounded-lg py-4 px-2 hover:bg-gray-300  hover:cursor-pointer'>
-                Valid Items <span className='pl-2'>({Items.length})</span><ChevronDownIcon className='h-5 w-5'/>
+                Valid Items <span className='pl-2'>({Items.length})</span>
             </p>
-            <p className=' flex items-center space-x-2 text-red-600 rounded-lg py-4 px-2 hover:bg-gray-300  hover:cursor-pointer'>
-                Failed Items <span className='pl-2'>({failedData.length})</span><ChevronDownIcon className='h-5 w-5'/>
+            <p 
+                className=' flex items-center space-x-2 text-red-600 rounded-lg py-4 px-2 hover:bg-gray-300  hover:cursor-pointer'
+                onClick={()=>setShowFailedData(true)}    
+            >
+                Failed Items <span className='pl-2'>({failedData.length})</span>
             </p>
-            <p className=' flex items-center space-x-2 text-blue-600 rounded-lg py-4 px-2 hover:bg-gray-300  hover:cursor-pointer'>
-                Clear Items<TrashIcon className='h-5 w-5'/>
+            <p 
+                className=' flex items-center space-x-2 text-blue-600 rounded-lg py-4 px-2 hover:bg-gray-300  hover:cursor-pointer'
+                onClick={()=>handleExportExcel(Items)}
+            >
+                Export xlsx
             </p>
         </div>
         <table className="table mt-3 mb-5">
@@ -45,13 +55,13 @@ function ItemsDetails({Items, failedData, addData, removeItem}) {
                         <th scope="row" className=' pt-3 pb-3 align-middle'>{d.material}</th>
                         <td className=' pt-3 pb-3 align-middle'>{d.materialNumber}</td>
                         <td className=' pt-3 pb-3'>
-                            <input 
-                                type = 'number' 
-                                value = {d.qty}
-                                placeholder='Qty' 
-                                className='w-[110px] text-[20px] text-center p-1 focus:outline-none border-1 border-blue-400 rounded-md'
-                                onBlur={(e)=> e.target.value.length > 0 && getData({...d, qty:+e.target.value})}
-                            />
+                        <input 
+                            type = 'number' 
+                            defaultValue={d.qty}
+                            placeholder='Qty' 
+                            className='w-[110px] text-[20px] text-center p-1 focus:outline-none border-1 border-blue-400 rounded-md'
+                            onBlur={(e)=> e.target.value.length > 0 && getData({...d, qty:+e.target.value})}
+                        />
                         </td>
                         <td className=' pt-3 pb-3 align-middle'>
                             <TrashIcon 
@@ -62,7 +72,10 @@ function ItemsDetails({Items, failedData, addData, removeItem}) {
                     </tr>
                 ))}
             </tbody>
-        </table>    
+        </table>  
+
+        {ShowFailedData && <FailedItems failedData={failedData} hide = {hideFailedData}/>}
+  
 
     </div>
   )

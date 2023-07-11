@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import {InformationCircleIcon} from '@heroicons/react/outline'
-import Up from '../components/Up'
-import Loading from '../components/Loading'
 import ItemesSelections from '../components/ItemesSelections'
 import ItemsDetails from '../components/ItemsDetails'
 import Controls from '../components/Controls'
@@ -28,7 +25,7 @@ export default function Main() {
   const [ShowDetails, setShowDetails] = useState(false)
   const [FailedData, setFailedData] = useState([])
 
-  const showDetails = (e)=>setShowDetails(e)
+  const showDetails = (e)=>{setShowDetails(e)}
 
   const getAlw = (e)=>{ setAlw(e)}
 
@@ -242,8 +239,8 @@ const calc = ()=>{
         {/* left side */}
         <div className='w-[40%] p-2 '>
           <div className='border-1 border-orange-400 p-3 rounded-md shadow-md h-full w-full '>
-            <ItemesSelections selectItems = {selectItems} uploadData = {uploadData} failedData = {failedData} showDetails = {showDetails}/>
-            { ShowDetails && <ItemsDetails Items = {Items} failedData = {FailedData} addData = {addData} removeItem = {removeItem}/>}
+            <ItemesSelections selectItems = {selectItems} uploadData = {uploadData} failedData = {failedData} />
+            { Items.length > 0 && <ItemsDetails Items = {Items} failedData = {FailedData} addData = {addData} removeItem = {removeItem}/>}
             { Items.length === 0 && <p className='text-5xl font-semibold font-serif text-center text-blue-700 mt-[25%] animate-pulse'>Add Plan</p>}
           </div>
         </div>
