@@ -13,7 +13,7 @@ function ItemesSelections({selectItems, uploadData, failedData}) {
 
     const fiterItems = (e)=>{
       setShowMenu(true)
-      showDetails(false)
+      // showDetails(false)
       setSearchText(e.target.value)
       let srchText = e.target.value
       const filterdItems = items.filter((i)=> {return i.materialNumber.includes(srchText)} )

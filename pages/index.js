@@ -232,7 +232,7 @@ const calc = ()=>{
 
   return (
     <div className='relative overflow-scroll scrollbar-hide'>
-      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small>...</h1>
+      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small><small className='text-sm'> Last Update 11-Jul 13:05 pm</small></h1>
       <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision and Show that if your plan within roles or not. </p>
       
       <div className='flex justify-between mt-5'>
