@@ -9,6 +9,7 @@ import PortionSection from '../components/PortionSection'
 
 import broiler from '../broiler.json'
 import items from '../items.json'
+import yld from '../yield.json'
 import { broilerFilter, portionOrdersGrouping, wholeOrdersGrouping } from '../utils/fn'
 import Evaluation from '../components/Evaluation'
 import WholeDistribution from '../components/WholeDistribution'
@@ -117,7 +118,7 @@ const createWholeChknObj = ()=>{
     setWholeObj(wObj)
 }
 
-// second potion calculation
+// second portion calculation
 
 // first get yield matrix
 let yieldArr = [];
@@ -165,15 +166,20 @@ let portionObj = []
 const createPortionObj = ()=>{
   portionOrders.map((obj)=>{
     let filteredObj = yieldMatrix.filter((e)=>{return e.class === obj.class })[0]
+    let family = yld.filter((e)=>{return e.family === obj.family })[0] // to get family yield %
+    console.log(filteredObj)
+    console.log(family)
     portionObj.push({
       family:filteredObj.family,
       class:obj.class,
       order:obj.order,
-      yieldFromChkn: +filteredObj.yieldFromChkn,
+      yieldFromChkn: +family.st,
+      // yieldFromChkn: +filteredObj.yieldFromChkn,
       yieldAfterEvas: +filteredObj.yieldAfterEvas,
       yieldFromFamily: +filteredObj.yieldFromFamily,
-      requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)), // carcass kg required
-      requiredFromFamilyKg: Math.ceil(obj.order / (+filteredObj.yieldFromFamily/100))
+      requiredFromFamilyKg: Math.ceil(obj.order / (+filteredObj.yieldFromFamily/100)),
+      requiredChknKg: Math.ceil((obj.order / (+filteredObj.yieldFromFamily/100)) / (+family.st/100)) // carcass kg required
+      // requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)) // carcass kg required
     })
   })
   setPortionObj(portionObj)
@@ -263,11 +269,11 @@ const calc = ()=>{
               { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion}/>}
               { PortionObj.length >0 && <Evaluation 
                   Alw = {Alw}
-                  wholeTot = {wholeTot}
                   portionObj = {PortionObj} 
                   largestToAchievePortion = {largestToAchievePortion}
-                  largestToAchieveWhole = {largestToAchieveWhole}
-                  remainedFromWholeDist = {remainedItems}
+                  // wholeTot = {wholeTot}
+                  // remainedFromWholeDist = {remainedItems}
+                  // largestToAchieveWhole = {largestToAchieveWhole}
                   />
               }
               {(wholeTot != 0 || largestToAchievePortion >0 ) && 

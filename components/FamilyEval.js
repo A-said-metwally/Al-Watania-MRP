@@ -1,7 +1,7 @@
 import React from 'react'
 import { ArrowDownIcon, ArrowCircleDownIcon, ArrowCircleUpIcon } from '@heroicons/react/outline'
 
-function FamilyEval({family, order, outPut, st, act}) {
+function FamilyEval({family, order, outPut, st, Alw}) {
 
     const deviation = ((outPut - order) / order * 100)
 
@@ -19,18 +19,27 @@ function FamilyEval({family, order, outPut, st, act}) {
                     <p className='font-serif'>{Math.round(outPut, 0).toLocaleString()} <span className=' text-green-600 text-xl'>Kg</span></p>
                 </div>
                 <div className='flex flex-col items-center text-lg font-semibold'>
-                    <p className='text-red-500'>Stock</p>
-                    <p className='font-serif text-red-500'>{order >0 ? Math.round((outPut - order), 0).toLocaleString() : Math.round(outPut, 0)} <span className=' text-green-600 text-xl'>Kg</span></p>
+                    <p className='text-red-500'>Over Stock</p>
+                    <p className='font-serif text-red-500'>{outPut - order > 0 ? Math.round((outPut - order), 0).toLocaleString() : 0} <span className=' text-green-600 text-xl'>Kg</span></p>
                 </div>
             </div>
+            
+            <div className='flex items-center justify-center text-xl font-semibold h-[60px]'>
+                {outPut < order &&
+                    <span className='text-red-500 pt-4'>
+                        Needed Chicken to Complete {Math.round((order - outPut) /(+st/100) / Alw, 0).toLocaleString() } 
+                    </span>
+                }
+            </div>
+            
             <div className='flex justify-between mt-3 items-center p-3'>
                 <div className='flex flex-col items-center text-lg font-semibold text-green-600'>
                     <p>Standard</p>
                     <p>{st}%</p>
                 </div>
                 <div className='flex flex-col items-center text-lg font-semibold text-orange-600'>
-                    <p>Deviation</p>
-                    <p>{order >0 ? deviation.toFixed(1) : 0}%</p>
+                    <p>Over Achieve</p>
+                    <p>{order >0 && order < outPut ? deviation.toFixed(1) : 0}%</p>
                 </div>
                 { deviation > 5 && <ArrowCircleUpIcon className='h-8 w-8 text-red-500'/>}
                 { (isNaN(deviation) || deviation <= 5) && <ArrowCircleDownIcon className='h-8 w-8 text-green-500'/>}

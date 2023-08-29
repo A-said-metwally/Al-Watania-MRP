@@ -33,22 +33,22 @@ function PortionSection({Alw, portionObj, neededCount}) {
                         </th>
                         <th scope="col" className=' align-middle'>
                             <div className='flex justify-center items-center space-x-3'>
-                                <span>% From Chicken</span>
-                            </div> 
-                        </th>
-                        <th scope="col" className=' align-middle'>
-                            <div className='flex justify-center items-center space-x-3'>
                                 <span>% From Family</span>
                             </div> 
                         </th>
                         <th scope="col" className=' align-middle'>
                             <div className='flex justify-center items-center space-x-3'>
-                                <span>Chkn(Kg) to Achieve</span>
+                                <span>Family Contribution</span>
                             </div> 
                         </th>
                         <th scope="col" className=' align-middle'>
                             <div className='flex justify-center items-center space-x-3'>
                                 <span>Family(Kg) to Achieve</span>
+                            </div> 
+                        </th>
+                        <th scope="col" className=' align-middle'>
+                            <div className='flex justify-center items-center space-x-3'>
+                                <span>Chkn(Kg) to Achieve</span>
                             </div> 
                         </th>
                         <th scope="col" className=' align-middle'>
@@ -64,10 +64,10 @@ function PortionSection({Alw, portionObj, neededCount}) {
                             <th className=' pt-3 pb-3 text-center'>{d.family}</th>
                             <th className=' pt-3 pb-3 text-center'>{d.class}</th>
                             <td className=' pt-3 pb-3 text-center'>{Math.round(d.order, 2).toLocaleString()}</td>
-                            <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{d.yieldFromFamily}<span className='text-blue-600'>%</span></td>
-                            <td className=' pt-3 pb-3 text-center'>{Math.round(d.requiredChknKg, 0).toLocaleString()}</td>
+                            <td className=' pt-3 pb-3 text-center'>{d.yieldFromChkn}<span className='text-blue-600'>%</span></td>
                             <td className=' pt-3 pb-3 text-center'>{(Math.round(d.requiredFromFamilyKg, 0)).toLocaleString()}</td>
+                            <td className=' pt-3 pb-3 text-center'>{Math.round(d.requiredChknKg, 0).toLocaleString()}</td>
                             <td className=' pt-3 pb-3 text-center'>{(Math.round((d.requiredChknKg / (Alw)),0)).toLocaleString()}</td>
                         </tr>
                     ))}
