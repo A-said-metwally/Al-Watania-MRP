@@ -85,7 +85,7 @@ function PortionSection({Alw, portionObj, neededCount, protionFamilyValues}) {
                     return (
                         <div key = {index} className='p-4 text-2xl text-center'>
                             <p className=' font-bold text-blue-500'>{e.group}</p>
-                            <p>{isNaN(e.requiredFromFamilyKge)? 0 : e.requiredFromFamilyKg.toLocaleString() }</p>
+                            <p>{isNaN(e.requiredFromFamilyKg)? 0 : e.requiredFromFamilyKg.toLocaleString() }</p>
                             <p className='text-red-500'>{isNaN(e.requiredChknKg)? 0: e.requiredChknKg.toLocaleString()}</p>
                         </div>
                     )
