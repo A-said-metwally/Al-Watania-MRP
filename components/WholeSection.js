@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 
-function WholeSection({wholeObj, neededCount}) {
+function WholeSection({wholeObj, wholeTot, neededCount}) {
 
     
     return (
@@ -49,6 +49,12 @@ function WholeSection({wholeObj, neededCount}) {
                 ))}
             </tbody>
         </table>   
+
+        <div className='mt-5 flex items-center justify-start space-x-7 bg-yellow-200 rounded-xl border-1
+         border-purple-500 shadow-md p-4 text-2xl text-left font-bold text-blue-500'>
+            <p className=' '>Total Order from Whole Chicken {wholeTot}</p>
+        </div>
+
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 
             shadow-md mt-3 hover:scale-105 cursor-pointer'>Needed Count to Cover Whole Orders : {Math.round(neededCount, 0).toLocaleString()} Bird</p> 
     </div>

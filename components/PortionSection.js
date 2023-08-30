@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-function PortionSection({Alw, portionObj, neededCount}) {
+function PortionSection({Alw, portionObj, neededCount, protionFamilyValues}) {
 
   return (
     <div className='relative mt-16 mb-5 '>
@@ -74,7 +74,23 @@ function PortionSection({Alw, portionObj, neededCount}) {
                 </tbody>
             </table>   
         </div>
+        <div className='mt-5 flex items-center justify-start space-x-7 bg-yellow-200 rounded-xl border-1 border-purple-500 shadow-md'>
+                        <div className='p-4 text-2xl text-left'>
+                            <p className=' font-bold text-blue-500'>Family</p>
+                            <p>Required From Family Qty(Kg)</p>
+                            <p className='text-red-500'>Required From Chicken</p>
+                        </div>
 
+                {protionFamilyValues.sort((a, b)=>{return b.requiredChknKg - a.requiredChknKg }).map((e, index)=>{
+                    return (
+                        <div key = {index} className='p-4 text-2xl text-center'>
+                            <p className=' font-bold text-blue-500'>{e.group}</p>
+                            <p>{e.requiredFromFamilyKg}</p>
+                            <p className='text-red-500'>{e.requiredChknKg}</p>
+                        </div>
+                    )
+                })}
+        </div>
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 shadow-md mt-3 hover:scale-105 cursor-pointer'>
             Needed Qty to Cover Portion Orders : 
                 <span> </span>{Math.round(neededCount, 0).toLocaleString()} Kg

@@ -10,7 +10,7 @@ import PortionSection from '../components/PortionSection'
 import broiler from '../broiler.json'
 import items from '../items.json'
 import yld from '../yield.json'
-import { broilerFilter, portionOrdersGrouping, wholeOrdersGrouping } from '../utils/fn'
+import { broilerFilter, portionOrdersGrouping, protionFamilyGrouping, wholeOrdersGrouping } from '../utils/fn'
 import Evaluation from '../components/Evaluation'
 import WholeDistribution from '../components/WholeDistribution'
 import OverStock from '../components/OverStock'
@@ -167,8 +167,6 @@ const createPortionObj = ()=>{
   portionOrders.map((obj)=>{
     let filteredObj = yieldMatrix.filter((e)=>{return e.class === obj.class })[0]
     let family = yld.filter((e)=>{return e.family === obj.family })[0] // to get family yield %
-    console.log(filteredObj)
-    console.log(family)
     portionObj.push({
       family:filteredObj.family,
       class:obj.class,
@@ -201,14 +199,13 @@ const wholeValues = WholeObj.map((v)=>{return +v.toAchieved}).sort((a, b)=>{retu
       if(largestToAchieveWhole >= wholeTot) break
       largestToAchieveWhole += wholeValues[i]
     }
-}
-getRequieredTowhole()
+  }
+  getRequieredTowhole()
 
 
-// get maximum count to achieve portion orders
-const portionValues = PortionObj.map((v)=>{return +v.requiredChknKg})
-const largestToAchievePortion = Math.max(...portionValues)
-
+// get maximum count to achieve portion orders according family
+const protionFamilyValues =  protionFamilyGrouping(PortionObj).sort((a, b)=>{return b.requiredChknKg - a.requiredChknKg})
+const largestToAchievePortion = protionFamilyValues[0]?.requiredChknKg || 0 //the largest family needed to achieve
 
 // calculate remained from whole after achievement required orders 
 const remainedItems = []
@@ -238,7 +235,7 @@ const calc = ()=>{
 
   return (
     <div className='relative overflow-scroll scrollbar-hide'>
-      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small><small className='text-sm'> Last Update 11-Jul 13:05 pm</small></h1>
+      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small><small className='text-sm'> Last Update 30-Aug 13:05 pm</small></h1>
       <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision and Show that if your plan within roles or not. </p>
       
       <div className='flex justify-between mt-5'>
@@ -260,22 +257,16 @@ const calc = ()=>{
               <Output 
                   Alw = {Alw}
                   losses = {Losses}
+                  wholeTot = {wholeTot}
                   largestToAchieveWhole = {largestToAchieveWhole}
                   largestToAchievePortion = {largestToAchievePortion}
               />
               <CalculationSteps losses = {Losses} />
               {Alw && <WholeDistribution Distribution = {Distribution}/>}
-              { WholeObj.length >0 &&   <WholeSection wholeObj = {WholeObj} neededCount = {largestToAchieveWhole}/>}
-              { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion}/>}
-              { PortionObj.length >0 && <Evaluation 
-                  Alw = {Alw}
-                  portionObj = {PortionObj} 
-                  largestToAchievePortion = {largestToAchievePortion}
-                  // wholeTot = {wholeTot}
-                  // remainedFromWholeDist = {remainedItems}
-                  // largestToAchieveWhole = {largestToAchieveWhole}
-                  />
-              }
+              { WholeObj.length >0 &&   <WholeSection wholeObj = {WholeObj} wholeTot = {wholeTot} neededCount = {largestToAchieveWhole}/>}
+              { PortionObj.length >0 && <PortionSection Alw = {Alw} portionObj = {PortionObj} neededCount = {largestToAchievePortion} protionFamilyValues= {protionFamilyValues}/>}
+              { PortionObj.length >0 && <Evaluation Alw = {Alw} portionObj = {PortionObj} largestToAchievePortion = {largestToAchievePortion} />}
+              
               {(wholeTot != 0 || largestToAchievePortion >0 ) && 
                 <OverStock
                   Alw = {Alw}

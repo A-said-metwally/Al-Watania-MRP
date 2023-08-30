@@ -84,3 +84,27 @@ export const broilerFilter = (LW, broiler)=>{
   return broiler.filter((b)=>{return b.ALW >= lower && b.ALW <= upper})
 }
 
+// group portion required chkn to achieve by family 
+export const protionFamilyGrouping = (e)=>{
+  const familyGroup = {};
+  e.forEach(obj => {
+    const key = obj.family;
+    if (!familyGroup[key]) {
+      familyGroup[key] = [];
+        }
+        familyGroup[key].push(obj);
+      })
+      
+  let familyGroupResult = []
+  for (const key in familyGroup) {
+    const group = familyGroup[key];
+    const sum1 = group.reduce((acc, obj) => acc + (obj.requiredFromFamilyKg), 0);
+    const sum2 = group.reduce((acc, obj) => acc + (obj.requiredChknKg), 0);
+    familyGroupResult.push({
+      group:key,
+      requiredFromFamilyKg:sum1,
+      requiredChknKg:sum2
+    })
+  }
+  return familyGroupResult
+}

@@ -25,7 +25,7 @@ function FamilyEval({family, order, outPut, st, Alw}) {
             </div>
             
             <div className='flex items-center justify-center text-xl font-semibold h-[60px]'>
-                {outPut < order &&
+                {outPut < order && outPut - order > 5 && 
                     <span className='text-red-500 pt-4'>
                         Needed Chicken to Complete {Math.round((order - outPut) /(+st/100) / Alw, 0).toLocaleString() } 
                     </span>

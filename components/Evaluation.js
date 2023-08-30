@@ -9,10 +9,8 @@ function Evaluation({portionObj, largestToAchievePortion, Alw}) {
     let order = 0
     let familyOrders = portionObj.filter((e)=>{ return e.family === f })
     familyOrders.map((o)=>{return order += o.requiredFromFamilyKg })
-    // familyOrders.map((o)=>{return order += o.order})
     return order
   }
-
   
   return (
     <div className='  relative flex flex-col  mt-8'>
