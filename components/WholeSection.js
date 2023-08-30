@@ -52,7 +52,7 @@ function WholeSection({wholeObj, wholeTot, neededCount}) {
 
         <div className='mt-5 flex items-center justify-start space-x-7 bg-yellow-200 rounded-xl border-1
          border-purple-500 shadow-md p-4 text-2xl text-left font-bold text-blue-500'>
-            <p className=' '>Total Order from Whole Chicken {wholeTot}</p>
+            <p className=' '>Total Order from Whole Chicken {wholeTot.toLocaleString()}</p>
         </div>
 
         <p className='text-xl font-semibold text-white bg-green-600 rounded-md p-2 
