@@ -59,7 +59,7 @@ function PortionSection({Alw, portionObj, neededCount, protionFamilyValues}) {
                     </tr>
                 </thead>
                 <tbody className='text-gray-600'>
-                    {portionObj.sort((a, b)=>{return a.family - b.family}).map((d)=>(
+                    {portionObj.sort((a, b)=>{return a.family.localeCompare(b.family)}).map((d)=>(
                         <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                             <th className=' pt-3 pb-3 text-center'>{d.family}</th>
                             <th className=' pt-3 pb-3 text-center'>{d.class}</th>
