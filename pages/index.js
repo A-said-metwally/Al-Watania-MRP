@@ -172,12 +172,10 @@ const createPortionObj = ()=>{
       class:obj.class,
       order:obj.order,
       yieldFromChkn: +family.st,
-      // yieldFromChkn: +filteredObj.yieldFromChkn,
       yieldAfterEvas: +filteredObj.yieldAfterEvas,
       yieldFromFamily: +filteredObj.yieldFromFamily,
       requiredFromFamilyKg: Math.ceil(obj.order / (+filteredObj.yieldFromFamily/100)),
       requiredChknKg: Math.ceil((obj.order / (+filteredObj.yieldFromFamily/100)) / (+family.st/100)) // carcass kg required
-      // requiredChknKg: Math.ceil(obj.order / (+filteredObj.yieldFromChkn/100)) // carcass kg required
     })
   })
   setPortionObj(portionObj)
@@ -235,7 +233,7 @@ const calc = ()=>{
 
   return (
     <div className='relative overflow-scroll scrollbar-hide'>
-      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small><small className='text-sm'> Last Update 30-Aug 13:40 pm</small></h1>
+      <h1 className=' italic text-center text-purple-600 font-serif font-bold'>Slaughtering MRP <small className=' font-semibold font-sans text-red-400 text-md'>v2</small><small className='text-sm'> Last Update 31-Aug 13:40 pm</small></h1>
       <p className='italic text-center text-lg text-gray-600 capitalize'>This App For Calculation Materials Requirements From chickens with visual calculation steps to be able to make right decision and Show that if your plan within roles or not. </p>
       
       <div className='flex justify-between mt-5'>

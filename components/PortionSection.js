@@ -59,7 +59,7 @@ function PortionSection({Alw, portionObj, neededCount, protionFamilyValues}) {
                     </tr>
                 </thead>
                 <tbody className='text-gray-600'>
-                    {portionObj.map((d)=>(
+                    {portionObj.sort((a, b)=>{return a.family - b.family}).map((d)=>(
                         <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg even:bg-gray-200'>
                             <th className=' pt-3 pb-3 text-center'>{d.family}</th>
                             <th className=' pt-3 pb-3 text-center'>{d.class}</th>
@@ -78,7 +78,7 @@ function PortionSection({Alw, portionObj, neededCount, protionFamilyValues}) {
                         <div className='p-4 text-2xl text-left'>
                             <p className=' font-bold text-blue-500'>Family</p>
                             <p>Required From Family Qty(Kg)</p>
-                            <p className='text-red-500'>Required From Chicken</p>
+                            <p className='text-red-500'>Required From Chicken (Kg)</p>
                         </div>
 
                 {protionFamilyValues.sort((a, b)=>{return b.requiredChknKg - a.requiredChknKg }).map((e, index)=>{

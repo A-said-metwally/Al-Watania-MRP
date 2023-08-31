@@ -29,7 +29,7 @@ function CalculationSteps({losses}) {
               <li>Recalculate Families Outputs According the Last Quantity</li>
               <li className=' text-purple-600'>According to Recalculation Outputs , You Must Be Reconsidered The Required Order </li>
               <li>Now System Have Two Numbers For Achieving Whole & Portion</li>
-              <li>It Will Be Take The Maximum Number From Them </li>
+              <li>Calculate Remained After Achieve Whole & Complete It to Achieve Portion </li>
               <li>Finally Add The Losses Percent to The Maximum Number to Be The Required Chickens  </li>
           </ul>        
     </div>
