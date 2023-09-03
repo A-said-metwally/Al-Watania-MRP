@@ -58,11 +58,11 @@ export const portionOrdersGrouping = (e)=>{
             });        
       })
   })
-
+console.log(portionGroup)
   let portionGroupResult = []
   for (const key in portionGroup) {
     const group = portionGroup[key];
-    const sum = group.reduce((acc, obj) => acc + (obj.qty * obj.count * obj.weight), 0);
+    const sum = group.reduce((acc, obj) => acc + (obj.qty * obj.weight), 0);
     let address = key.split('|')
     portionGroupResult.push({
       family:address[0],

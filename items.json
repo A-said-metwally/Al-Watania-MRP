@@ -152,7 +152,7 @@
    "division": "Frozen",
    "count": 10,
    "cartonWt": 10,
-   "weight": 1,
+   "weight": 10,
    "group": null,
    "family": "Breast",
    "class": "Fillet",
@@ -170,7 +170,7 @@
    "division": "Frozen",
    "count": 5,
    "cartonWt": 10,
-   "weight": 2,
+   "weight": 10,
    "group": null,
    "family": "Breast",
    "class": "Fillet",
@@ -872,7 +872,7 @@
    "division": "Frozen",
    "count": 10,
    "cartonWt": 10,
-   "weight": 1,
+   "weight": 10,
    "group": null,
    "family": "Legs",
    "class": "Thigh",
@@ -1113,8 +1113,7 @@
    "bom":[
     {"family":"Breast", "class":"Breast Without Wings", "yieldFromChkn": "27.90","yieldAfterEvas": "41.0", "yieldFromFamily": "77.3", "contribution":0.435},
     {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.12},
-    {"family":"Legs", "class":"Drumstick", "yieldFromChkn": "9.20","yieldAfterEvas": "13.50", "yieldFromFamily": "30.50", "contribution":0.15},
-    {"family":"Legs", "class":"Thigh", "yieldFromChkn": "20.70","yieldAfterEvas": "30.50", "yieldFromFamily": "69.20", "contribution":0.295}
+    {"family":"Legs", "class":"Legs", "yieldFromChkn": "29.9","yieldAfterEvas": "44.00", "yieldFromFamily": "100.0", "contribution":0.444}
 ],
    "yieldFromChkn": "",
    "yieldAfterEvas": "",
@@ -1136,9 +1135,8 @@
    "class": "Bom",
    "bom":[
     {"family":"Breast", "class":"Breast Without Wings", "yieldFromChkn": "27.90","yieldAfterEvas": "41.0", "yieldFromFamily": "77.3", "contribution":0.435},
-    {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.120},
-    {"family":"Legs", "class":"Drumstick", "yieldFromChkn": "9.20","yieldAfterEvas": "13.50", "yieldFromFamily": "30.50", "contribution":0.150},
-    {"family":"Legs", "class":"Thigh", "yieldFromChkn": "20.70","yieldAfterEvas": "30.50", "yieldFromFamily": "69.20", "contribution":0.295}
+    {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.12},
+    {"family":"Legs", "class":"Legs", "yieldFromChkn": "29.9","yieldAfterEvas": "44.00", "yieldFromFamily": "100.0", "contribution":0.444}
   ],
    "yieldFromChkn": "",
    "yieldAfterEvas": "",
@@ -1161,8 +1159,7 @@
    "bom":[
     {"family":"Breast", "class":"Back Bone", "yieldFromChkn": "7.5","yieldAfterEvas": "11.0", "yieldFromFamily": "35.0", "contribution":0.069},
     {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.292},
-    {"family":"Legs", "class":"Drumstick", "yieldFromChkn": "9.20","yieldAfterEvas": "13.50", "yieldFromFamily": "30.50", "contribution":0.319},
-    {"family":"Legs", "class":"Thigh", "yieldFromChkn": "20.70","yieldAfterEvas": "30.50", "yieldFromFamily": "69.20", "contribution":0.319}
+    {"family":"Legs", "class":"Legs", "yieldFromChkn": "29.9","yieldAfterEvas": "44.00", "yieldFromFamily": "100.0", "contribution":0.639}
   ],
    "yieldFromChkn": "",
    "yieldAfterEvas": "",
@@ -1185,9 +1182,8 @@
   "bom":[
    {"family":"Breast", "class":"Back Bone", "yieldFromChkn": "7.5","yieldAfterEvas": "11.0", "yieldFromFamily": "77.3", "contribution":0.075},
    {"family":"Wings", "class":"Wings", "yieldFromChkn": "8.20","yieldAfterEvas": "12.0", "yieldFromFamily": "100.0", "contribution":0.325},
-   {"family":"Legs", "class":"Drumstick", "yieldFromChkn": "9.20","yieldAfterEvas": "13.50", "yieldFromFamily": "30.50", "contribution":0.300},
-   {"family":"Legs", "class":"Thigh", "yieldFromChkn": "20.70","yieldAfterEvas": "30.50", "yieldFromFamily": "69.20", "contribution":0.300}
- ],
+   {"family":"Legs", "class":"Legs", "yieldFromChkn": "29.9","yieldAfterEvas": "44.00", "yieldFromFamily": "100.0", "contribution":0.60}
+  ],
   "yieldFromChkn": "",
   "yieldAfterEvas": "",
   "yieldFromFamily": "",
@@ -1238,7 +1234,7 @@
    "division": "Frozen",
    "count": 5,
    "cartonWt": 10,
-   "weight": 2,
+   "weight": 10,
    "group": null,
    "family": "Wings",
    "class": "Wings",

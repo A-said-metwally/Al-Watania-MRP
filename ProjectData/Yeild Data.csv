@@ -1,0 +1,148 @@
+material,materialNumber,classification,netweight,wUn,division,count,cartonWt,weight,group,family,class,yieldFromChkn,yeildAfterEvas,yieldFromFamily,select
+8170109,"frozen breast 900g ,12T/CAR",Parts,900,G,Frozen,12,10.8,0.9,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8170114,"frozen breast 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8170172,frozen whole breast 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8179013,fresh breast w/bone&skin 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8180126,frozen breast soft meat 10kg (bsm) bulk,Parts,10,KG,Frozen,1,10,10,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8190112,"fresh breast 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8190115,"fresh breast 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Breast,Breast Without Wings,27.90%,41.00%,77.30%,FALSE
+8170122,"frozen breast fillet 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8170123,"frozen breast fillet 10kg bags ,10EA*1KG",Parts,"1,000",G,Frozen,10,10,1,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8170124,"frozen breast fillet 10kg bags ,5EA*2KG",Parts,"2,000",G,Frozen,5,10,2,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8179007,fresh broiler breast fillet 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8179010,fresh parent breast fillet 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8180112,frozen broiler breast fillet 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8180113,frozen parent breast fillet 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8190108,"fresh breast fillet 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8190116,"fresh breast fillet 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8190125,"fresh breast fillet 10kg bags ,5EA*2KG",Parts,"2,000",G,Fresh,5,10,2,,Breast,Fillet,12.50%,18.30%,18.20%,FALSE
+8170108,"frozen neck 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Breast,Neck,,,,FALSE
+8190123,"fresh necks 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Breast,Neck,,,,FALSE
+8170189,Frozen tenderloin 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Breast,Tenderlion,,,,FALSE
+8180106,"frozen shawrma 10kg bags ,5EA*2KG",Parts,"2,000",G,Frozen,5,10,2,,Deboned Chicken,Deboned Without Wings,,,,FALSE
+8180119,"frozen shawrma 10kg bags ,10EA*1KG",Parts,"1,000",G,Frozen,10,10,1,,Deboned Chicken,Deboned Without Wings,,,,FALSE
+8180125,"fresh skinless shawrma 10kg bags,5EA*2KG",Parts,"2,000",G,Fresh,5,10,2,,Deboned Chicken,Deboned Without Wings,,,,FALSE
+8170113,"frozen drumstick 900g ,12T/CAR",Parts,900,G,Frozen,12,10.8,0.9,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8170118,"frozen drumstick 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8170176,frozen drumstick 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8190110,"fresh drumstick 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8190119,"fresh drumsticks 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8190129,"fresh drumstick cuts 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8190325,fresh drumstick cuts 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8190326,fresh drumstick 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,Drumstick,9.20%,13.50%,30.50%,FALSE
+8170110,"frozen whole legs 900g ,12T/CAR",Parts,900,G,Frozen,12,10.8,0.9,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8170115,"frozen whole legs 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8170161,frozen feet grade A 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8170173,frozen whole legs 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8170182,fresh whole legs 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8180111,frozen parent leg meat 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8190102,"fresh whole legs 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8190113,"fresh whole legs 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Legs,Legs,29.90%,44.00%,100.00%,FALSE
+8170112,"frozen thigh 900g ,12T/CAR",Parts,900,G,Frozen,12,10.8,0.9,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8170117,"frozen thigh 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8170175,frozen thigh 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8179008,fresh thigh fillet 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8190106,"fresh thigh 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8190114,"fresh thigh 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8190130,"fresh thigh fillet 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8190503,"fresh thigh fillet 10kg bags ,5EA*2KG",Parts,"2,000",G,Fresh,5,10,2,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8190506,fresh thigh 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,Thigh,20.70%,30.50%,69.20%,FALSE
+8170162,"frozen thigh fillet 10kg bags ,10EA*1KG",Parts,"1,000",G,Frozen,10,10,1,,Legs,,,,,FALSE
+8179011,fresh parent leg meat 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,,,,,FALSE
+8180110,frozen thigh fillet 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,,,,,FALSE
+8180127,"frozen legs soft meat 10kg bulk ,(lsm)",Parts,10,KG,Frozen,1,10,10,,Legs,,,,,FALSE
+8190347,frozen feet grade B 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Legs,,,,,FALSE
+8190348,fresh drumstick Fillet 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Legs,,,,,FALSE
+8190121,"fresh gizzards 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Liver,Gizzard,1.50%,2.80%,1.50%,FALSE
+8170105,"frozen gizzard 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Liver,Gizzard,1.50%,2.80%,1.50%,FALSE
+8190124,"fresh hearts 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Liver,Hearts,4.00%,4.00%,1.50%,FALSE
+8170106,"frozen heart 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Liver,Hearts,4.00%,4.00%,1.50%,FALSE
+8190122,"fresh liver 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Liver,Liver,2.00%,2.00%,1.50%,FALSE
+8170104,frozen liver 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Liver,Liver,2.00%,2.00%,1.50%,FALSE
+8170107,"frozen liver 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Liver,Liver,2.00%,2.00%,1.50%,FALSE
+8170163,fresh mixed parts 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Mixed,,,,,FALSE
+8170177,frozen mixed parts 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Mixed,,,,,FALSE
+8190105,"fresh mixed parts 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Mixed,,,,,FALSE
+8190128,"fresh mixed parts 1000g ,8T/CAR",Parts,"1,000",G,Fresh,8,8,1,,Mixed,,,,,FALSE
+8170111,"frozen wings 900g ,12T/CAR",Parts,900,G,Frozen,12,10.8,0.9,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8170116,"frozen wings 450g ,20T/CAR",Parts,450,G,Frozen,20,9,0.45,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8170120,"frozen premium wings 10kg bulk ,5EA*2KG",Parts,"2,000",G,Frozen,5,10,2,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8170174,frozen wings 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8170190,frozen flat wings 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8170191,frozen drumette shoulder wings 10kg bulk,Parts,10,KG,Frozen,1,10,10,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8180122,fresh wings v.shape 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8190104,"fresh wings 900g ,8T/CAR",Parts,900,G,Fresh,8,7.2,0.9,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8190120,"fresh wings 450g ,15T/CAR",Parts,450,G,Fresh,15,6.75,0.45,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8190505,fresh drumette shoulder wings 10kg bulk,Parts,10,KG,Fresh,1,10,10,,Wings,Wings,8.20%,12.00%,100.00%,FALSE
+8180116,frozen chkn skin 10kg bulk,Parts,10,KG,Frozen,1,10,10,,,,,,,FALSE
+8180123,frozen mdm 10kg bulk,Parts,10,KG,Frozen,1,10,10,,,,,,,FALSE
+8110101,"frozen grade A chkn 1500g ,10EA/CAR",Whole,,,Frozen,1,,1.5,1500,,,,,,FALSE
+8110102,"frozen grade A chkn 1400g ,10EA/CAR",Whole,,,Frozen,1,,1.4,1400,,,,,,FALSE
+8110103,"frozen grade A chkn 1300g ,10EA/CAR",Whole,,,Frozen,1,,1.3,1300,,,,,,FALSE
+8110104,"frozen grade A chkn 1200g ,10EA/CAR",Whole,,,Frozen,1,,1.2,1200,,,,,,FALSE
+8110105,"frozen grade A chkn 1100g ,10EA/CAR",Whole,,,Frozen,1,,1.1,1100,,,,,,FALSE
+8110106,"frozen grade A chkn 1000g ,10EA/CAR",Whole,,,Frozen,1,,1,1000,,,,,,FALSE
+8110107,"frozen grade A chkn 900g ,10EA/CAR",Whole,,,Frozen,1,,0.9,900,,,,,,FALSE
+8110108,"frozen grade A chkn 800g ,10EA/CAR",Whole,,,Frozen,1,,0.8,800,,,,,,FALSE
+8110109,"frozen grade A chkn 700g ,10EA/CAR",Whole,,,Frozen,1,,0.7,700,,,,,,FALSE
+8110110,"frozen grade A chkn 600g ,10EA/CAR",Whole,,,Frozen,1,,0.6,600,,,,,,FALSE
+8110111,"frozen grade A chkn 500g ,10EA/CAR",Whole,,,Frozen,1,,0.5,500,,,,,,FALSE
+8110204,"frozen grade B chkn 1200g ,10EA/CAR",Whole,,,Frozen,1,,1.2,1200,,,,,,FALSE
+8110205,"frozen grade B chkn 1100g ,10EA/CAR",Whole,,,Frozen,1,,1.1,1100,,,,,,FALSE
+8110206,"frozen grade B chkn 1000g ,10EA/CAR",Whole,,,Frozen,1,,1,1000,,,,,,FALSE
+8110207,"frozen grade B chkn 900g ,10EA/CAR",Whole,,,Frozen,1,,0.9,900,,,,,,FALSE
+8110208,"frozen grade B chkn 800g ,10EA/CAR",Whole,,,Frozen,1,,0.8,800,,,,,,FALSE
+8110209,"frozen grade B chkn 700g ,10EA/CAR",Whole,,,Frozen,1,,0.7,700,,,,,,FALSE
+8110210,"frozen grade B chkn 600g ,10EA/CAR",Whole,,,Frozen,1,,0.6,600,,,,,,FALSE
+8110211,"frozen grade B chkn 500g ,10EA/CAR",Whole,,,Frozen,1,,0.5,500,,,,,,FALSE
+8140101,"fresh chkn 1300g ,10EA/CAR",Whole,,,Fresh,1,,1.3,1300,,,,,,FALSE
+8140102,"fresh chkn 1200g ,10EA/CAR",Whole,,,Fresh,1,,1.2,1200,,,,,,FALSE
+8140103,"fresh chkn 1100g ,10EA/CAR",Whole,,,Fresh,1,,1.1,1100,,,,,,FALSE
+8140104,"fresh chkn 1000g ,10EA/CAR",Whole,,,Fresh,1,,1,1000,,,,,,FALSE
+8140105,"fresh chkn 900g ,10EA/CAR",Whole,,,Fresh,1,,0.9,900,,,,,,FALSE
+8140106,"fresh chkn 800g ,10EA/CAR",Whole,,,Fresh,1,,0.8,800,,,,,,FALSE
+8140107,"fresh chkn 700g ,10EA/CAR",Whole,,,Fresh,1,,0.7,700,,,,,,FALSE
+8140108,"fresh chkn 600g ,10EA/CAR",Whole,,,Fresh,1,,0.6,600,,,,,,FALSE
+8140120,"fresh premium chkn 1x1100g ,8T/CAR",Whole,,,Fresh,1,,1.1,1100,,,,,,FALSE
+8140122,"fresh premium chkn 1x500g ,8T/CAR",Whole,,,Fresh,1,,0.5,500,,,,,,FALSE
+8140123,"fresh premium chkn 1x600g ,8T/CAR",Whole,,,Fresh,1,,0.6,600,,,,,,FALSE
+8140124,"fresh premium chkn 1x700g ,8T/CAR",Whole,,,Fresh,1,,0.7,700,,,,,,FALSE
+8140125,"fresh premium chkn 1x800g ,8T/CAR",Whole,,,Fresh,1,,0.8,800,,,,,,FALSE
+8140126,"fresh premium chkn 1x900g ,8T/CAR",Whole,,,Fresh,1,,0.9,900,,,,,,FALSE
+8140127,"fresh premium chkn 1x1000g ,8T/CAR",Whole,,,Fresh,1,,1,1000,,,,,,FALSE
+8140130,"fresh premium chkn 1x1500g ,8T/CAR",Whole,,,Fresh,1,,1.5,1500,,,,,,FALSE
+8140131,"fresh chkn twin pack 2x600g ,4T/CAR",Whole,,,Fresh,2,,1.2,600,,,,,,FALSE
+8140132,"fresh chkn twin pack 2x700g ,4T/CAR",Whole,,,Fresh,2,,1.4,700,,,,,,FALSE
+8140133,"fresh chkn twin pack 2x800g ,4T/CAR",Whole,,,Fresh,2,,1.6,800,,,,,,FALSE
+8140134,"fresh chkn twin pack 2x900g ,4T/CAR",Whole,,,Fresh,2,,1.8,900,,,,,,FALSE
+8140135,"fresh chkn twin pack 2x1000g ,4T/CAR",Whole,,,Fresh,2,,2,1000,,,,,,FALSE
+8140136,"fresh chkn twin pack 2x1100g ,4T/CAR",Whole,,,Fresh,2,,2.2,1100,,,,,,FALSE
+8140137,"fresh chkn twin pack 2x1200g ,4T/CAR",Whole,,,Fresh,2,,2.4,1200,,,,,,FALSE
+8140139,"fresh chkn triple pack 3x600g ,2T/CAR",Whole,,,Fresh,3,,1.8,600,,,,,,FALSE
+8140140,"fresh chkn triple pack 3x700g ,2T/CAR",Whole,,,Fresh,3,,2.1,700,,,,,,FALSE
+8140141,"fresh chkn triple pack 3x800g ,2T/CAR",Whole,,,Fresh,3,,2.4,800,,,,,,FALSE
+8140142,"fresh chkn triple pack 3x900g ,2T/CAR",Whole,,,Fresh,3,,2.7,900,,,,,,FALSE
+8140143,"fresh chkn triple pack 3x1000g ,2T/CAR",Whole,,,Fresh,3,,3,1000,,,,,,FALSE
+8140151,"fresh skinless chkn 600g ,10EA/CAR",Whole,,,Fresh,1,,0.6,600,,,,,,FALSE
+8140152,"fresh skinless chkn 700g ,10EA/CAR",Whole,,,Fresh,1,,0.7,700,,,,,,FALSE
+8140153,"fresh skinless chkn 800g ,10EA/CAR",Whole,,,Fresh,1,,0.8,800,,,,,,FALSE
+8140161,"fresh chkn triple pack 3x500g ,2T/CAR",Whole,,,Fresh,3,,1.5,500,,,,,,FALSE
+8140162,"fresh chkn twin pack 2x500g ,4T/CAR",Whole,,,Fresh,2,,1,500,,,,,,FALSE
+8140163,"fresh chkn vacuum pack 700g ,8EA/CAR",Whole,,,Fresh,1,,0.7,700,,,,,,FALSE
+8140164,"fresh chkn vacuum pack 800g ,8EA/CAR",Whole,,,Fresh,1,,0.8,800,,,,,,FALSE
+8140165,"fresh chkn vacuum pack 900g ,8EA/CAR",Whole,,,Fresh,1,,0.9,900,,,,,,FALSE
+8140166,"fresh chkn vacuum pack 1000g ,8EA/CAR",Whole,,,Fresh,1,,1,1000,,,,,,FALSE
+8140167,"fresh chkn vacuum pack 1100g ,8EA/CAR",Whole,,,Fresh,1,,1.1,1100,,,,,,FALSE
+8140172,"fresh chkn vacuum pack 500g ,8EA/CAR",Whole,,,Fresh,1,,0.5,500,,,,,,FALSE
+8150101,"frozen chkn grade c canteen ,20PC/CAR",Whole,,,Frozen,,,10,,,,,,,FALSE
+8170183,"fresh chkn 500g ,20PC/CAR bulk",Whole,,,Fresh,20,,10,500,,,,,,FALSE
+8170184,"fresh chkn 600g ,10PC/CAR bulk",Whole,,,Fresh,10,,6,600,,,,,,FALSE
+8170185,"fresh chkn 700g ,10PC/CAR bulk",Whole,,,Fresh,10,,7,700,,,,,,FALSE
+8170186,"fresh chkn 800g ,10PC/CAR bulk",Whole,,,Fresh,10,,8,800,,,,,,FALSE
+8170187,"fresh half chkn 650g ,20PC/CAR bulk",Whole,,,Fresh,20,,13,650,,,,,,FALSE
+8170188,"fresh skinless chkn 700g ,10PC/CAR bulk",Whole,,,Fresh,10,,7,700,,,,,,FALSE
+8170192,"fresh chkn 900g ,10PC/CAR bulk",Whole,,,Fresh,10,,9,900,,,,,,FALSE
+8170193,"fresh chkn 1000g ,10PC/CAR bulk",Whole,,,Fresh,10,,10,1000,,,,,,FALSE
+8180131,"frozen bulk chkn 1200g ,10PC/CAR",Whole,,,Frozen,10,,12,1200,,,,,,FALSE
+8180132,"frozen bulk chkn 1300g ,10PC/CAR",Whole,,,Frozen,10,,13,1300,,,,,,FALSE
+8180133,"frozen bulk chkn 1400g ,10PC/CAR",Whole,,,Frozen,10,,14,1400,,,,,,FALSE
